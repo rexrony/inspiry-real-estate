@@ -168,6 +168,14 @@ class Inspiry_Real_Estate {
         $this->loader->add_action( 'init', $property_post_type, 'register_property_city_taxonomy' );
         $this->loader->add_action( 'init', $property_post_type, 'register_property_feature_taxonomy' );
 
+        if ( is_admin() ) {
+            global $pagenow;
+            if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == 'property' ) {
+                $this->loader->add_filter( 'manage_edit-property_columns', $property_post_type, 'register_custom_column_titles' );
+                $this->loader->add_action( 'manage_pages_custom_column', $property_post_type, 'display_custom_column' );
+            }
+        }
+
 	}
 
 	/**
@@ -225,5 +233,22 @@ class Inspiry_Real_Estate {
 	public function get_version() {
 		return $this->version;
 	}
+
+    /**
+     * To log any thing for debugging purposes
+     *
+     * @since   1.0.0
+     *
+     * @param   mixed   $message    message to be logged
+     */
+    public static function log( $message ) {
+        if( WP_DEBUG === true ){
+            if( is_array( $message ) || is_object( $message ) ){
+                error_log( print_r( $message, true ) );
+            } else {
+                error_log( $message );
+            }
+        }
+    }
 
 }

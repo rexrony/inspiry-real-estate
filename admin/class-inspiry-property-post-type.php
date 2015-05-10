@@ -13,7 +13,7 @@ class Inspiry_Property_Post_Type {
 
     /**
      * Register Property Post Type
-     * @since   1.0.0
+     * @since 1.0.0
      */
     public function register_property_post_type() {
 
@@ -69,12 +69,12 @@ class Inspiry_Property_Post_Type {
 
     /**
      * Register Property Type Taxonomy
-     * @since   1.0.0
+     * @since 1.0.0
      */
     public function register_property_type_taxonomy() {
 
         $labels = array(
-            'name'                       => _x( 'Property Types', 'Taxonomy General Name', 'inspiry-real-estate' ),
+            'name'                       => _x( 'Property Type', 'Taxonomy General Name', 'inspiry-real-estate' ),
             'singular_name'              => _x( 'Property Type', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
             'menu_name'                  => __( 'Property Type', 'inspiry-real-estate' ),
             'all_items'                  => __( 'All Property Types', 'inspiry-real-estate' ),
@@ -116,12 +116,12 @@ class Inspiry_Property_Post_Type {
 
     /**
      * Register Property Status Taxonomy
-     * @since   1.0.0
+     * @since 1.0.0
      */
     public function register_property_status_taxonomy() {
 
         $labels = array(
-            'name'                       => _x( 'Property Statuses', 'Taxonomy General Name', 'inspiry-real-estate' ),
+            'name'                       => _x( 'Property Status', 'Taxonomy General Name', 'inspiry-real-estate' ),
             'singular_name'              => _x( 'Property Status', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
             'menu_name'                  => __( 'Property Status', 'inspiry-real-estate' ),
             'all_items'                  => __( 'All Property Statuses', 'inspiry-real-estate' ),
@@ -163,12 +163,12 @@ class Inspiry_Property_Post_Type {
 
     /**
      * Register Property City Taxonomy
-     * @since   1.0.0
+     * @since 1.0.0
      */
     public function register_property_city_taxonomy() {
 
         $labels = array(
-            'name'                       => _x( 'Property Cities', 'Taxonomy General Name', 'inspiry-real-estate' ),
+            'name'                       => _x( 'Property City', 'Taxonomy General Name', 'inspiry-real-estate' ),
             'singular_name'              => _x( 'Property City', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
             'menu_name'                  => __( 'Property City', 'inspiry-real-estate' ),
             'all_items'                  => __( 'All Property Cities', 'inspiry-real-estate' ),
@@ -210,7 +210,7 @@ class Inspiry_Property_Post_Type {
 
     /**
      * Register Property Feature Taxonomy
-     * @since   1.0.0
+     * @since 1.0.0
      */
     public function register_property_feature_taxonomy() {
 
@@ -245,7 +245,7 @@ class Inspiry_Property_Post_Type {
             'hierarchical'               => true,
             'public'                     => true,
             'show_ui'                    => true,
-            'show_admin_column'          => true,
+            'show_admin_column'          => false,
             'show_in_nav_menus'          => true,
             'show_tagcloud'              => true,
             'rewrite'                    => $rewrite,
@@ -253,6 +253,87 @@ class Inspiry_Property_Post_Type {
 
         register_taxonomy( 'property-feature', array( 'property' ), $args );
 
+    }
+
+
+    /**
+     * Add custom columns
+     *
+     * @param   array   $defaults
+     * @since   1.0.0
+     * @return  array   $defaults
+     */
+    public function register_custom_column_titles ( $defaults ) {
+
+        $new_columns = array(
+            "thumb"     => __( 'Image', 'inspiry-real-estate' ),
+            "id"        => __( 'Custom ID', 'inspiry-real-estate' ),
+            "price"     => __( 'Price', 'inspiry-real-estate'),
+        );
+
+        $last_columns = array();
+
+        if ( count( $defaults ) > 5 ) {
+
+            unset( $defaults['author'] );
+
+            $last_columns = array_splice( $defaults, 2, 4 );
+
+            // Simplify column titles
+            $last_columns[ 'taxonomy-property-type' ]   = __( 'Type', 'inspiry-real-estate' );
+            $last_columns[ 'taxonomy-property-status' ] = __( 'Status', 'inspiry-real-estate' );
+            $last_columns[ 'taxonomy-property-city' ]   = __( 'Location', 'inspiry-real-estate' );
+
+        }
+
+        $defaults = array_merge( $defaults, $new_columns );
+        $defaults = array_merge( $defaults, $last_columns );
+
+        return $defaults;
+    }
+
+    /**
+     * Register custom column for image.
+     *
+     * @access  public
+     * @param   string $column_name
+     * @since   1.0.0
+     * @return  void
+     */
+    public function display_custom_column ( $column_name ) {
+        global $post;
+
+        switch ( $column_name ) {
+
+            case 'thumb':
+                if ( has_post_thumbnail ( $post->ID ) ) {
+                    ?>
+                    <a href="<?php the_permalink(); ?>" target="_blank">
+                        <?php the_post_thumbnail( array( 130, 130 ) );?>
+                    </a>
+                    <?php
+                } else {
+                    _e ( 'No Image', 'inspiry-real-estate' );
+                }
+                break;
+
+            case 'id':
+                $property_id = get_post_meta ( $post->ID, 'REAL_HOMES_property_id', true );
+                if( ! empty ( $property_id ) ) {
+                    echo $property_id;
+                } else {
+                    _e ( 'NA', 'inspiry-real-estate' );
+                }
+                break;
+
+            case 'price':
+                //property_price();
+                echo 'to do';   // todo: property price
+                break;
+
+            default:
+                break;
+        }
     }
 
 }
