@@ -173,17 +173,25 @@ class Inspiry_Real_Estate {
         $this->loader->add_action( 'init', $property_post_type, 'register_property_city_taxonomy' );
         $this->loader->add_action( 'init', $property_post_type, 'register_property_feature_taxonomy' );
 
+        // Agent Post Type
+        $agent_post_type = new Inspiry_Agent_Post_Type();
+        $this->loader->add_action( 'init', $agent_post_type, 'register_agent_post_type' );
+
         if ( is_admin() ) {
             global $pagenow;
+
+            // property custom columns
             if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == 'property' ) {
                 $this->loader->add_filter( 'manage_edit-property_columns', $property_post_type, 'register_custom_column_titles' );
                 $this->loader->add_action( 'manage_pages_custom_column', $property_post_type, 'display_custom_column' );
             }
-        }
 
-        // Agent Post Type
-        $agent_post_type = new Inspiry_Agent_Post_Type();
-        $this->loader->add_action( 'init', $agent_post_type, 'register_agent_post_type' );
+            // agent custom columns
+            if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == 'agent' ) {
+                $this->loader->add_filter( 'manage_edit-agent_columns', $agent_post_type, 'register_custom_column_titles' );
+                $this->loader->add_action( 'manage_posts_custom_column', $agent_post_type, 'display_custom_column' );
+            }
+        }
 
 	}
 

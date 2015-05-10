@@ -257,7 +257,7 @@ class Inspiry_Property_Post_Type {
 
 
     /**
-     * Add custom columns
+     * Register custom columns
      *
      * @param   array   $defaults
      * @since   1.0.0
@@ -266,7 +266,7 @@ class Inspiry_Property_Post_Type {
     public function register_custom_column_titles ( $defaults ) {
 
         $new_columns = array(
-            "thumb"     => __( 'Image', 'inspiry-real-estate' ),
+            "thumb"     => __( 'Photo', 'inspiry-real-estate' ),
             "id"        => __( 'Custom ID', 'inspiry-real-estate' ),
             "price"     => __( 'Price', 'inspiry-real-estate'),
         );
@@ -293,7 +293,7 @@ class Inspiry_Property_Post_Type {
     }
 
     /**
-     * Register custom column for image.
+     * Display custom column for properties
      *
      * @access  public
      * @param   string $column_name

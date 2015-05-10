@@ -67,4 +67,76 @@ class Inspiry_Agent_Post_Type {
 
     }
 
+    /**
+     * Register custom columns
+     *
+     * @param   array   $defaults
+     * @since   1.0.0
+     * @return  array   $defaults
+     */
+    public function register_custom_column_titles ( $defaults ) {
+
+        $new_columns = array(
+            "thumb"     => __( 'Photo', 'inspiry-real-estate' ),
+            "email"     => __( 'Email', 'inspiry-real-estate' ),
+            "mobile"    => __( 'Mobile', 'inspiry-real-estate'),
+        );
+
+        $last_columns = array();
+
+        if ( count( $defaults ) > 2 ) {
+            $last_columns = array_splice( $defaults, 2, 1 );
+        }
+
+        $defaults = array_merge( $defaults, $new_columns );
+        $defaults = array_merge( $defaults, $last_columns );
+
+        return $defaults;
+    }
+
+    /**
+     * Display custom column for agents
+     *
+     * @access  public
+     * @param   string $column_name
+     * @since   1.0.0
+     * @return  void
+     */
+    public function display_custom_column ( $column_name ) {
+        global $post;
+
+        switch ( $column_name ) {
+
+            case 'thumb':
+                if ( has_post_thumbnail ( $post->ID ) ) {
+                    ?>
+                    <a href="<?php the_permalink(); ?>" target="_blank">
+                        <?php the_post_thumbnail( array( 130, 130 ) );?>
+                    </a>
+                    <?php
+                } else {
+                    _e ( 'No Image', 'inspiry-real-estate' );
+                }
+                break;
+
+            case 'email':
+                /*$property_id = get_post_meta ( $post->ID, 'REAL_HOMES_property_id', true );
+                if( ! empty ( $property_id ) ) {
+                    echo $property_id;
+                } else {
+                    _e ( 'NA', 'inspiry-real-estate' );
+                }*/
+                echo 'to do';   // todo: agent email
+                break;
+
+            case 'mobile':
+                //property_price();
+                echo 'to do';   // todo: agent mobile
+                break;
+
+            default:
+                break;
+        }
+    }
+
 }
