@@ -113,6 +113,11 @@ class Inspiry_Real_Estate {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-inspiry-real-estate-admin.php';
 
+        /**
+         * The class responsible for providing property custom post type and related stuff.
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-inspiry-property-post-type.php';
+
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
@@ -154,6 +159,10 @@ class Inspiry_Real_Estate {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+        // Property Post Type
+        $property_post_type = new Inspiry_Property_Post_Type();
+        $this->loader->add_action( 'init', $property_post_type, 'register_property_post_type' );
 
 	}
 

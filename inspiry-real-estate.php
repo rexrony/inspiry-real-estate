@@ -8,7 +8,7 @@
  * @wordpress-plugin
  * Plugin Name:       Inspiry Real Estate
  * Plugin URI:        http://inspirythemes.com/
- * Description:       This plugin provides property and agent custom post type with related functionality.
+ * Description:       Inspiry real estate plugin provides property post type and agent post type with related functionality.
  * Version:           1.0.0
  * Author:            M Saqib Sarwar
  * Author URI:        http://themeforest.net/user/InspiryThemes
