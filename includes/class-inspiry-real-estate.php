@@ -163,6 +163,7 @@ class Inspiry_Real_Estate {
         // Property Post Type
         $property_post_type = new Inspiry_Property_Post_Type();
         $this->loader->add_action( 'init', $property_post_type, 'register_property_post_type' );
+        $this->loader->add_action( 'init', $property_post_type, 'register_property_type_taxonomy' );
 
 	}
 
