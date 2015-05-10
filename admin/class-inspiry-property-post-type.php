@@ -34,12 +34,14 @@ class Inspiry_Property_Post_Type {
             'not_found'           => __( 'Not found', 'inspiry-real-estate' ),
             'not_found_in_trash'  => __( 'Not found in Trash', 'inspiry-real-estate' ),
         );
+
         $rewrite = array(
             'slug'                => __( 'property', 'inspiry-real-estate' ),
             'with_front'          => true,
             'pages'               => true,
             'feeds'               => true,
         );
+
         $args = array(
             'label'               => __( 'property', 'inspiry-real-estate' ),
             'description'         => __( 'Real Estate Property', 'inspiry-real-estate' ),
@@ -90,11 +92,13 @@ class Inspiry_Property_Post_Type {
             'search_items'               => __( 'Search Property Types', 'inspiry-real-estate' ),
             'not_found'                  => __( 'Not Found', 'inspiry-real-estate' ),
         );
+
         $rewrite = array(
             'slug'                       => __( 'property-type', 'inspiry-real-estate' ),
             'with_front'                 => true,
             'hierarchical'               => true,
         );
+
         $args = array(
             'labels'                     => $labels,
             'hierarchical'               => true,
@@ -105,38 +109,39 @@ class Inspiry_Property_Post_Type {
             'show_tagcloud'              => true,
             'rewrite'                    => $rewrite,
         );
+
         register_taxonomy( 'property-type', array( 'property' ), $args );
 
     }
 
     /**
-     * Register Property Type Taxonomy
+     * Register Property Status Taxonomy
      * @since   1.0.0
      */
-    public function register_property_type_taxonomy() {
+    public function register_property_status_taxonomy() {
 
         $labels = array(
-            'name'                       => _x( 'Property Types', 'Taxonomy General Name', 'inspiry-real-estate' ),
-            'singular_name'              => _x( 'Property Type', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
-            'menu_name'                  => __( 'Property Type', 'inspiry-real-estate' ),
-            'all_items'                  => __( 'All Property Types', 'inspiry-real-estate' ),
-            'parent_item'                => __( 'Parent Property Type', 'inspiry-real-estate' ),
-            'parent_item_colon'          => __( 'Parent Property Type:', 'inspiry-real-estate' ),
-            'new_item_name'              => __( 'New Property Type Name', 'inspiry-real-estate' ),
-            'add_new_item'               => __( 'Add New Property Type', 'inspiry-real-estate' ),
-            'edit_item'                  => __( 'Edit Property Type', 'inspiry-real-estate' ),
-            'update_item'                => __( 'Update Property Type', 'inspiry-real-estate' ),
-            'view_item'                  => __( 'View Property Type', 'inspiry-real-estate' ),
-            'separate_items_with_commas' => __( 'Separate Property Types with commas', 'inspiry-real-estate' ),
-            'add_or_remove_items'        => __( 'Add or remove Property Types', 'inspiry-real-estate' ),
+            'name'                       => _x( 'Property Statuses', 'Taxonomy General Name', 'inspiry-real-estate' ),
+            'singular_name'              => _x( 'Property Status', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
+            'menu_name'                  => __( 'Property Status', 'inspiry-real-estate' ),
+            'all_items'                  => __( 'All Property Statuses', 'inspiry-real-estate' ),
+            'parent_item'                => __( 'Parent Property Status', 'inspiry-real-estate' ),
+            'parent_item_colon'          => __( 'Parent Property Status:', 'inspiry-real-estate' ),
+            'new_item_name'              => __( 'New Property Status Name', 'inspiry-real-estate' ),
+            'add_new_item'               => __( 'Add New Property Status', 'inspiry-real-estate' ),
+            'edit_item'                  => __( 'Edit Property Status', 'inspiry-real-estate' ),
+            'update_item'                => __( 'Update Property Status', 'inspiry-real-estate' ),
+            'view_item'                  => __( 'View Property Status', 'inspiry-real-estate' ),
+            'separate_items_with_commas' => __( 'Separate Property Statuses with commas', 'inspiry-real-estate' ),
+            'add_or_remove_items'        => __( 'Add or remove Property Statuses', 'inspiry-real-estate' ),
             'choose_from_most_used'      => __( 'Choose from the most used', 'inspiry-real-estate' ),
-            'popular_items'              => __( 'Popular Property Types', 'inspiry-real-estate' ),
-            'search_items'               => __( 'Search Property Types', 'inspiry-real-estate' ),
+            'popular_items'              => __( 'Popular Property Statuses', 'inspiry-real-estate' ),
+            'search_items'               => __( 'Search Property Statuses', 'inspiry-real-estate' ),
             'not_found'                  => __( 'Not Found', 'inspiry-real-estate' ),
         );
-        
+
         $rewrite = array(
-            'slug'                       => __( 'property-type', 'inspiry-real-estate' ),
+            'slug'                       => __( 'property-status', 'inspiry-real-estate' ),
             'with_front'                 => true,
             'hierarchical'               => true,
         );
@@ -152,7 +157,101 @@ class Inspiry_Property_Post_Type {
             'rewrite'                    => $rewrite,
         );
 
-        register_taxonomy( 'property-type', array( 'property' ), $args );
+        register_taxonomy( 'property-status', array( 'property' ), $args );
+
+    }
+
+    /**
+     * Register Property City Taxonomy
+     * @since   1.0.0
+     */
+    public function register_property_city_taxonomy() {
+
+        $labels = array(
+            'name'                       => _x( 'Property Cities', 'Taxonomy General Name', 'inspiry-real-estate' ),
+            'singular_name'              => _x( 'Property City', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
+            'menu_name'                  => __( 'Property City', 'inspiry-real-estate' ),
+            'all_items'                  => __( 'All Property Cities', 'inspiry-real-estate' ),
+            'parent_item'                => __( 'Parent Property City', 'inspiry-real-estate' ),
+            'parent_item_colon'          => __( 'Parent Property City:', 'inspiry-real-estate' ),
+            'new_item_name'              => __( 'New Property City Name', 'inspiry-real-estate' ),
+            'add_new_item'               => __( 'Add New Property City', 'inspiry-real-estate' ),
+            'edit_item'                  => __( 'Edit Property City', 'inspiry-real-estate' ),
+            'update_item'                => __( 'Update Property City', 'inspiry-real-estate' ),
+            'view_item'                  => __( 'View Property City', 'inspiry-real-estate' ),
+            'separate_items_with_commas' => __( 'Separate Property Cities with commas', 'inspiry-real-estate' ),
+            'add_or_remove_items'        => __( 'Add or remove Property Cities', 'inspiry-real-estate' ),
+            'choose_from_most_used'      => __( 'Choose from the most used', 'inspiry-real-estate' ),
+            'popular_items'              => __( 'Popular Property Cities', 'inspiry-real-estate' ),
+            'search_items'               => __( 'Search Property Cities', 'inspiry-real-estate' ),
+            'not_found'                  => __( 'Not Found', 'inspiry-real-estate' ),
+        );
+
+        $rewrite = array(
+            'slug'                       => __( 'property-city', 'inspiry-real-estate' ),
+            'with_front'                 => true,
+            'hierarchical'               => true,
+        );
+
+        $args = array(
+            'labels'                     => $labels,
+            'hierarchical'               => true,
+            'public'                     => true,
+            'show_ui'                    => true,
+            'show_admin_column'          => true,
+            'show_in_nav_menus'          => true,
+            'show_tagcloud'              => true,
+            'rewrite'                    => $rewrite,
+        );
+
+        register_taxonomy( 'property-city', array( 'property' ), $args );
+
+    }
+
+    /**
+     * Register Property Feature Taxonomy
+     * @since   1.0.0
+     */
+    public function register_property_feature_taxonomy() {
+
+        $labels = array(
+            'name'                       => _x( 'Property Features', 'Taxonomy General Name', 'inspiry-real-estate' ),
+            'singular_name'              => _x( 'Property Feature', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
+            'menu_name'                  => __( 'Property Feature', 'inspiry-real-estate' ),
+            'all_items'                  => __( 'All Property Features', 'inspiry-real-estate' ),
+            'parent_item'                => __( 'Parent Property Feature', 'inspiry-real-estate' ),
+            'parent_item_colon'          => __( 'Parent Property Feature:', 'inspiry-real-estate' ),
+            'new_item_name'              => __( 'New Property Feature Name', 'inspiry-real-estate' ),
+            'add_new_item'               => __( 'Add New Property Feature', 'inspiry-real-estate' ),
+            'edit_item'                  => __( 'Edit Property Feature', 'inspiry-real-estate' ),
+            'update_item'                => __( 'Update Property Feature', 'inspiry-real-estate' ),
+            'view_item'                  => __( 'View Property Feature', 'inspiry-real-estate' ),
+            'separate_items_with_commas' => __( 'Separate Property Features with commas', 'inspiry-real-estate' ),
+            'add_or_remove_items'        => __( 'Add or remove Property Features', 'inspiry-real-estate' ),
+            'choose_from_most_used'      => __( 'Choose from the most used', 'inspiry-real-estate' ),
+            'popular_items'              => __( 'Popular Property Features', 'inspiry-real-estate' ),
+            'search_items'               => __( 'Search Property Features', 'inspiry-real-estate' ),
+            'not_found'                  => __( 'Not Found', 'inspiry-real-estate' ),
+        );
+
+        $rewrite = array(
+            'slug'                       => __( 'property-feature', 'inspiry-real-estate' ),
+            'with_front'                 => true,
+            'hierarchical'               => true,
+        );
+
+        $args = array(
+            'labels'                     => $labels,
+            'hierarchical'               => true,
+            'public'                     => true,
+            'show_ui'                    => true,
+            'show_admin_column'          => true,
+            'show_in_nav_menus'          => true,
+            'show_tagcloud'              => true,
+            'rewrite'                    => $rewrite,
+        );
+
+        register_taxonomy( 'property-feature', array( 'property' ), $args );
 
     }
 
