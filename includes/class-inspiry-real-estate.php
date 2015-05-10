@@ -118,6 +118,11 @@ class Inspiry_Real_Estate {
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-inspiry-property-post-type.php';
 
+        /**
+         * The class responsible for providing agent custom post type and related stuff.
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-inspiry-agent-post-type.php';
+
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
@@ -175,6 +180,10 @@ class Inspiry_Real_Estate {
                 $this->loader->add_action( 'manage_pages_custom_column', $property_post_type, 'display_custom_column' );
             }
         }
+
+        // Agent Post Type
+        $agent_post_type = new Inspiry_Agent_Post_Type();
+        $this->loader->add_action( 'init', $agent_post_type, 'register_agent_post_type' );
 
 	}
 
