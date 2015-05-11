@@ -182,6 +182,7 @@ class Inspiry_Real_Estate {
         // Agent Post Type
         $agent_post_type = new Inspiry_Agent_Post_Type();
         $this->loader->add_action( 'init', $agent_post_type, 'register_agent_post_type' );
+        $this->loader->add_filter( 'rwmb_meta_boxes', $agent_post_type, 'register_meta_boxes' );
 
         if ( is_admin() ) {
             global $pagenow;

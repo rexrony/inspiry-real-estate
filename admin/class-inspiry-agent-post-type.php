@@ -139,4 +139,81 @@ class Inspiry_Agent_Post_Type {
         }
     }
 
+    /**
+     * Register meta boxes related to property post type
+     *
+     * @param   array   $meta_boxes
+     * @since   1.0.0
+     * @return  array   $meta_boxes
+     */
+    public function register_meta_boxes ( $meta_boxes ){
+
+        $prefix = 'REAL_HOMES_';
+
+        // Agent Meta Box
+        $meta_boxes[] = array(
+            'id'        => 'agent-meta-box',
+            'title'     => __('Contact Details', 'inspiry-real-estate'),
+            'pages'     => array( 'agent' ),
+            'context'   => 'normal',
+            'priority'  => 'high',
+            'fields'    => array(
+                array(
+                    'name'  => __( 'Email Address', 'inspiry-real-estate' ),
+                    'id'    => "{$prefix}agent_email",
+                    'desc'  => __( "Agent related messages from contact form on property details page, will be sent on this email address.", "inspiry-real-estate" ),
+                    'type'  => 'text',
+                ),
+                array(
+                    'name'  => __( 'Mobile Number', 'inspiry-real-estate' ),
+                    'id'    => "{$prefix}mobile_number",
+                    'desc'  => __("Provide mobile number", "inspiry-real-estate"),
+                    'type'  => 'text',
+                ),
+                array(
+                    'name'  => __('Office Number', 'inspiry-real-estate'),
+                    'id'    => "{$prefix}office_number",
+                    'desc'  => __("Provide office number", "inspiry-real-estate"),
+                    'type'  => 'text',
+                ),
+                array(
+                    'name'  => __('Fax Number', 'inspiry-real-estate'),
+                    'id'    => "{$prefix}fax_number",
+                    'desc'  => __("Provide fax number", "inspiry-real-estate"),
+                    'type'  => 'text',
+                ),
+                array(
+                    'name'  => __('Facebook URL', 'inspiry-real-estate'),
+                    'id'    => "{$prefix}facebook_url",
+                    'desc'  => __("Provide Facebook URL", "inspiry-real-estate"),
+                    'type'  => 'text',
+                ),
+                array(
+                    'name'  => __('Twitter URL', 'inspiry-real-estate'),
+                    'id'    => "{$prefix}twitter_url",
+                    'desc'  => __("Provide Twitter URL", "inspiry-real-estate"),
+                    'type'  => 'text',
+                ),
+                array(
+                    'name'  => __('Google Plus URL', 'inspiry-real-estate'),
+                    'id'    => "{$prefix}google_plus_url",
+                    'desc'  => __("Provide Google Plus URL", "inspiry-real-estate"),
+                    'type'  => 'text',
+                ),
+                array(
+                    'name'  => __('LinkedIn URL', 'inspiry-real-estate'),
+                    'id'    => "{$prefix}linked_in_url",
+                    'desc'  => __("Provide LinkedIn URL", "inspiry-real-estate"),
+                    'type'  => 'text',
+                )
+            )
+        );
+
+        // apply a filter before returning meta boxes
+        $meta_boxes = apply_filters( 'agent_meta_boxes', $meta_boxes );
+
+        return $meta_boxes;
+
+    }
+
 }

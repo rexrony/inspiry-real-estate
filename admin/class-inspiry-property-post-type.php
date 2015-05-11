@@ -339,8 +339,9 @@ class Inspiry_Property_Post_Type {
     /**
      * Register meta boxes related to property post type
      *
-     * @param $meta_boxes
-     * @since 1.0.0
+     * @param   array   $meta_boxes
+     * @since   1.0.0
+     * @return  array   $meta_boxes
      */
     public function register_meta_boxes ( $meta_boxes ){
 
