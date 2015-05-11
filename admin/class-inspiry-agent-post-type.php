@@ -1,8 +1,8 @@
 <?php
 /**
- * Property custom post type class.
+ * Agent custom post type class.
  *
- * Defines the property post type.
+ * Defines the agent post type.
  *
  * @package    Inspiry_Real_Estate
  * @subpackage Inspiry_Real_Estate/admin
@@ -20,7 +20,7 @@ class Inspiry_Agent_Post_Type {
         $labels = array(
             'name'                => _x( 'Agents', 'Post Type General Name', 'inspiry-real-estate' ),
             'singular_name'       => _x( 'Agent', 'Post Type Singular Name', 'inspiry-real-estate' ),
-            'menu_name'           => __( 'Agent', 'inspiry-real-estate' ),
+            'menu_name'           => __( 'Agents', 'inspiry-real-estate' ),
             'name_admin_bar'      => __( 'Agent', 'inspiry-real-estate' ),
             'parent_item_colon'   => __( 'Parent Agent:', 'inspiry-real-estate' ),
             'all_items'           => __( 'All Agents', 'inspiry-real-estate' ),

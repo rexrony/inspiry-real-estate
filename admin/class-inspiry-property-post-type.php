@@ -20,7 +20,7 @@ class Inspiry_Property_Post_Type {
         $labels = array(
             'name'                => _x( 'Properties', 'Post Type General Name', 'inspiry-real-estate' ),
             'singular_name'       => _x( 'Property', 'Post Type Singular Name', 'inspiry-real-estate' ),
-            'menu_name'           => __( 'Property', 'inspiry-real-estate' ),
+            'menu_name'           => __( 'Properties', 'inspiry-real-estate' ),
             'name_admin_bar'      => __( 'Property', 'inspiry-real-estate' ),
             'parent_item_colon'   => __( 'Parent Property:', 'inspiry-real-estate' ),
             'all_items'           => __( 'All Properties', 'inspiry-real-estate' ),
