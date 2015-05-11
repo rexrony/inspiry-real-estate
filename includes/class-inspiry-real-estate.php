@@ -123,6 +123,11 @@ class Inspiry_Real_Estate {
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-inspiry-agent-post-type.php';
 
+        /**
+         * The class responsible for providing additional details meta box
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-inspiry-additional-details-meta-box.php';
+
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
@@ -193,6 +198,11 @@ class Inspiry_Real_Estate {
                 $this->loader->add_action( 'manage_posts_custom_column', $agent_post_type, 'display_custom_column' );
             }
         }
+
+        // Additional details meta box
+        $additional_details_meta_box = Additional_Details_Meta_Box::get_instance();
+        $this->loader->add_action( 'add_meta_boxes', $additional_details_meta_box, 'add_additional_details_meta_box' );
+        $this->loader->add_action( 'save_post', $additional_details_meta_box, 'save_additional_details' );
 
 	}
 
