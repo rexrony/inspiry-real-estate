@@ -348,7 +348,7 @@ class Inspiry_Property_Post_Type {
         $prefix = 'REAL_HOMES_';
 
         // Agents
-        $agents_array = array( -1 => __( 'None', 'framework' ) );
+        $agents_array = array( -1 => __( 'None', 'inspiry-real-estate' ) );
         $agents_posts = get_posts( array (
             'post_type' => 'agent',
             'posts_per_page' => -1,

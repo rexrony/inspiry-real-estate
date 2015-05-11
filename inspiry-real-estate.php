@@ -21,6 +21,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'INSPIRY_REAL_ESTATE_PLUGIN_BASENAME', plugin_basename(__FILE__) );
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-inspiry-real-estate-activator.php

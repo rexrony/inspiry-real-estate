@@ -169,6 +169,9 @@ class Inspiry_Real_Estate {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_real_estate_settings' );
+        $this->loader->add_action( 'admin_init', $plugin_admin, 'initialize_real_estate_options' );
+        $this->loader->add_filter( 'plugin_action_links_' . INSPIRY_REAL_ESTATE_PLUGIN_BASENAME, $plugin_admin, 'inspiry_real_estate_action_links' );
 
         // Property Post Type
         $property_post_type = new Inspiry_Property_Post_Type();

@@ -97,3 +97,17 @@
     }
 
 }
+
+/* Inspiry Settings Page */
+label.inspiry-field-description{
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+input.currency_sign,
+input.decimal_separator,
+input.thousand_separator,
+input.number_of_decimals{
+    width: 50px;
+}
