@@ -172,6 +172,7 @@ class Inspiry_Real_Estate {
         $this->loader->add_action( 'init', $property_post_type, 'register_property_status_taxonomy' );
         $this->loader->add_action( 'init', $property_post_type, 'register_property_city_taxonomy' );
         $this->loader->add_action( 'init', $property_post_type, 'register_property_feature_taxonomy' );
+        $this->loader->add_filter( 'rwmb_meta_boxes', $property_post_type, 'register_meta_boxes' );
 
         // Agent Post Type
         $agent_post_type = new Inspiry_Agent_Post_Type();

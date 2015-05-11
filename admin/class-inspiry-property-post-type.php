@@ -336,4 +336,311 @@ class Inspiry_Property_Post_Type {
         }
     }
 
+    /**
+     * Register meta boxes related to property post type
+     *
+     * @param $meta_boxes
+     * @since 1.0.0
+     */
+    public function register_meta_boxes ( $meta_boxes ){
+
+        $prefix = 'REAL_HOMES_';
+
+        // Agents
+        $agents_array = array( -1 => __( 'None', 'framework' ) );
+        $agents_posts = get_posts( array (
+            'post_type' => 'agent',
+            'posts_per_page' => -1,
+            'suppress_filters' => 0,
+            ) );
+        if ( ! empty ( $agents_posts ) ) {
+            foreach ( $agents_posts as $agent_post ) {
+                $agents_array[ $agent_post->ID ] = $agent_post->post_title;
+            }
+        }
+
+        // Property Details Meta Box
+        $meta_boxes[] = array(
+            'id' => 'property-meta-box',
+            'title' => __('Property', 'inspiry-real-estate'),
+            'pages' => array('property'),
+            'tabs' => array(
+                'details' => array(
+                    'label' => __('Basic Information', 'inspiry-real-estate'),
+                    'icon' => 'dashicons-admin-home',
+                ),
+                'gallery' => array(
+                    'label' => __('Gallery Images', 'inspiry-real-estate'),
+                    'icon' => 'dashicons-format-gallery',
+                ),
+                'video' => array(
+                    'label' => __('Property Video', 'inspiry-real-estate'),
+                    'icon' => 'dashicons-format-video',
+                ),
+                'agent' => array(
+                    'label' => __('Agent Information', 'inspiry-real-estate'),
+                    'icon' => 'dashicons-businessman',
+                ),
+                'misc' => array(
+                    'label' => __('Misc', 'inspiry-real-estate'),
+                    'icon' => 'dashicons-lightbulb',
+                ),
+                'home-slider' => array(
+                    'label' => __('Homepage Slider', 'inspiry-real-estate'),
+                    'icon' => 'dashicons-images-alt',
+                ),
+                'banner' => array(
+                    'label' => __('Top Banner', 'inspiry-real-estate'),
+                    'icon' => 'dashicons-format-image',
+                ),
+            ),
+            'tab_style' => 'left',
+            'fields' => array(
+
+                // Details
+                array(
+                    'id' => "{$prefix}property_price",
+                    'name' => __('Sale or Rent Price ( Only digits )', 'inspiry-real-estate'),
+                    'desc' => __('Example Value: 435000', 'inspiry-real-estate'),
+                    'type' => 'text',
+                    'std' => "",
+                    'columns' => 6,
+                    'tab' => 'details',
+                ),
+                array(
+                    'id' => "{$prefix}property_price_postfix",
+                    'name' => __('Price Postfix', 'inspiry-real-estate'),
+                    'desc' => __('Example Value: Per Month', 'inspiry-real-estate'),
+                    'type' => 'text',
+                    'std' => "",
+                    'columns' => 6,
+                    'tab' => 'details',
+                ),
+                array(
+                    'id' => "{$prefix}property_size",
+                    'name' => __('Area Size ( Only digits )', 'inspiry-real-estate'),
+                    'desc' => __('Example Value: 2500', 'inspiry-real-estate'),
+                    'type' => 'text',
+                    'std' => "",
+                    'columns' => 6,
+                    'tab' => 'details',
+                ),
+                array(
+                    'id' => "{$prefix}property_size_postfix",
+                    'name' => __('Size Postfix', 'inspiry-real-estate'),
+                    'desc' => __('Example Value: Sq Ft', 'inspiry-real-estate'),
+                    'type' => 'text',
+                    'std' => "",
+                    'columns' => 6,
+                    'tab' => 'details',
+                ),
+                array(
+                    'id' => "{$prefix}property_bedrooms",
+                    'name' => __('Bedrooms', 'inspiry-real-estate'),
+                    'desc' => __('Example Value: 4', 'inspiry-real-estate'),
+                    'type' => 'text',
+                    'std' => "",
+                    'columns' => 6,
+                    'tab' => 'details',
+                ),
+                array(
+                    'id' => "{$prefix}property_bathrooms",
+                    'name' => __('Bathrooms', 'inspiry-real-estate'),
+                    'desc' => __('Example Value: 2', 'inspiry-real-estate'),
+                    'type' => 'text',
+                    'std' => "",
+                    'columns' => 6,
+                    'tab' => 'details',
+                ),
+                array(
+                    'id' => "{$prefix}property_garage",
+                    'name' => __('Garages', 'inspiry-real-estate'),
+                    'desc' => __('Example Value: 1', 'inspiry-real-estate'),
+                    'type' => 'text',
+                    'std' => "",
+                    'columns' => 6,
+                    'tab' => 'details',
+                ),
+                array(
+                    'id' => "{$prefix}property_id",
+                    'name' => __('Property ID', 'inspiry-real-estate'),
+                    'desc' => __('It will help you search a property directly.', 'inspiry-real-estate'),
+                    'type' => 'text',
+                    'std' => "",
+                    'columns' => 6,
+                    'tab' => 'details',
+                ),
+
+
+                // Map
+                array(
+                    'type' => 'divider',
+                    'columns' => 12,
+                    'id' => 'google_map_divider', // Not used, but needed
+                    'tab' => 'details',
+                ),
+                array(
+                    'id' => "{$prefix}property_address",
+                    'name' => __('Property Address', 'inspiry-real-estate'),
+                    'desc' => __('Leaving it empty will hide the google map on property detail page.', 'inspiry-real-estate'),
+                    'type' => 'text',
+                    'std' => '1903 Hollywood Boulevard, Hollywood, FL 33020, USA',
+                    'columns' => 12,
+                    'tab' => 'details',
+                ),
+                array(
+                    'id' => "{$prefix}property_location",
+                    'name' => __('Property Location at Google Map*', 'inspiry-real-estate'),
+                    'desc' => __('Drag the google map marker to point your property location. You can also use the address field above to search for your property.', 'inspiry-real-estate'),
+                    'type' => 'map',
+                    'std' => '26.011812,-80.14524499999999,15',   // 'latitude,longitude[,zoom]' (zoom is optional)
+                    'style' => 'width: 95%; height: 400px',
+                    'address_field' => "{$prefix}property_address",
+                    'columns' => 12,
+                    'tab' => 'details',
+                ),
+
+                // Gallery
+                array(
+                    'name' => __('Gallery Type You Want to Use', 'inspiry-real-estate'),
+                    'id' => "{$prefix}gallery_slider_type",
+                    'type' => 'radio',
+                    'std' => 'thumb-on-right',
+                    'options' => array(
+                        'thumb-on-right' => __('Gallery with thumbnails on right', 'inspiry-real-estate'),
+                        'thumb-on-bottom' => __('Gallery with thumbnails on bottom', 'inspiry-real-estate')
+                    ),
+                    'columns' => 12,
+                    'tab' => 'gallery',
+                ),
+                array(
+                    'name' => __('Property Gallery Images', 'inspiry-real-estate'),
+                    'id' => "{$prefix}property_images",
+                    'desc' => __('Images should have minimum size of 770px by 386px for thumbnails on right and 830px by 460px for thumbnails on bottom. Bigger size images will be cropped automatically.', 'inspiry-real-estate'),
+                    'type' => 'image_advanced',
+                    'max_file_uploads' => 48,
+                    'columns' => 12,
+                    'tab' => 'gallery',
+                ),
+
+
+                // Property Video
+                array(
+                    'id' => "{$prefix}tour_video_url",
+                    'name' => __('Virtual Tour Video URL', 'inspiry-real-estate'),
+                    'desc' => __('Provide virtual tour video URL. YouTube, Vimeo, SWF File and MOV File are supported', 'inspiry-real-estate'),
+                    'type' => 'text',
+                    'columns' => 12,
+                    'tab' => 'video',
+                ),
+                array(
+                    'name' => __('Virtual Tour Video Image', 'inspiry-real-estate'),
+                    'id' => "{$prefix}tour_video_image",
+                    'desc' => __('Provide an image that will be displayed as a place holder and when user will click over it the video will be opened in a lightbox. You must provide this image otherwise the video will not be displayed. Image should have minimum width of 818px and minimum height 417px. Bigger size images will be cropped automatically.', 'inspiry-real-estate'),
+                    'type' => 'image_advanced',
+                    'max_file_uploads' => 1,
+                    'columns' => 12,
+                    'tab' => 'video',
+                ),
+
+                // Agents
+                array(
+                    'name' => __('What to display in agent information box ?', 'inspiry-real-estate'),
+                    'id' => "{$prefix}agent_display_option",
+                    'type' => 'radio',
+                    'std' => 'none',
+                    'options' => array(
+                        'my_profile_info' => __('Author information.', 'inspiry-real-estate'),
+                        'agent_info' => __('Agent Information. ( Select the agent below )', 'inspiry-real-estate'),
+                        'none' => __('None. ( Hide information box )', 'inspiry-real-estate'),
+                    ),
+                    'columns' => 12,
+                    'tab' => 'agent',
+                ),
+                array(
+                    'name' => __('Agent', 'inspiry-real-estate'),
+                    'id' => "{$prefix}agents",
+                    'type' => 'select',
+                    'options' => $agents_array,
+                    'columns' => 12,
+                    'tab' => 'agent',
+                ),
+
+                // Misc
+                array(
+                    'name' => __('Mark this property as featured ?', 'inspiry-real-estate'),
+                    'id' => "{$prefix}featured",
+                    'type' => 'radio',
+                    'std' => 0,
+                    'options' => array(
+                        1 => __('Yes ', 'inspiry-real-estate'),
+                        0 => __('No', 'inspiry-real-estate')
+                    ),
+                    'columns' => 12,
+                    'tab' => 'misc',
+                ),
+                array(
+                    'id' => "{$prefix}attachments",
+                    'name' => __('Attachments', 'inspiry-real-estate'),
+                    'desc' => __('You can attach PDF files, Map images OR other documents to provide further details related to property.', 'inspiry-real-estate'),
+                    'type' => 'file_advanced',
+                    'mime_type' => '',
+                    'columns' => 12,
+                    'tab' => 'misc',
+                ),
+                array(
+                    'id' => "{$prefix}property_private_note",
+                    'name' => __('Private Note', 'inspiry-real-estate'),
+                    'desc' => __('In this textarea, You can write your private note about this property. This field will not be displayed anywhere else.', 'inspiry-real-estate'),
+                    'type' => 'textarea',
+                    'std' => "",
+                    'columns' => 12,
+                    'tab' => 'misc',
+                ),
+
+                // Homepage Slider
+                array(
+                    'name' => __('Do you want to add this property in Homepage Slider ?', 'inspiry-real-estate'),
+                    'desc' => __('If Yes, Then you need to provide a slider image below.', 'inspiry-real-estate'),
+                    'id' => "{$prefix}add_in_slider",
+                    'type' => 'radio',
+                    'std' => 'no',
+                    'options' => array(
+                        'yes' => __('Yes ', 'inspiry-real-estate'),
+                        'no' => __('No', 'inspiry-real-estate')
+                    ),
+                    'columns' => 12,
+                    'tab' => 'home-slider',
+                ),
+                array(
+                    'name' => __('Slider Image', 'inspiry-real-estate'),
+                    'id' => "{$prefix}slider_image",
+                    'desc' => __('The recommended image size is 2000px by 700px. You can use bigger or smaller image but try to keep the same height to width ratio and use the exactly same size images for all properties that will be added in slider.', 'inspiry-real-estate'),
+                    'type' => 'image_advanced',
+                    'max_file_uploads' => 1,
+                    'columns' => 12,
+                    'tab' => 'home-slider',
+                ),
+
+                // Top Banner
+                array(
+                    'name' => __('Top Banner Image', 'inspiry-real-estate'),
+                    'id' => "{$prefix}page_banner_image",
+                    'desc' => __('Upload the banner image, If you want to change it for this property. Otherwise default banner image uploaded from theme options will be displayed. Image should have minimum width of 2000px and minimum height of 230px.', 'inspiry-real-estate'),
+                    'type' => 'image_advanced',
+                    'max_file_uploads' => 1,
+                    'columns' => 12,
+                    'tab' => 'banner',
+                )
+
+            )
+        );
+
+        // apply a filter before returning meta boxes
+        $meta_boxes = apply_filters( 'property_meta_boxes', $meta_boxes );
+
+        return $meta_boxes;
+
+    }
+
 }
