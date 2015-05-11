@@ -21,7 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'INSPIRY_REAL_ESTATE_PLUGIN_BASENAME', plugin_basename(__FILE__) );
+define( 'INSPIRY_REAL_ESTATE_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.
