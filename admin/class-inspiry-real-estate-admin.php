@@ -71,19 +71,9 @@ class Inspiry_Real_Estate_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Inspiry_Real_Estate_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Inspiry_Real_Estate_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/inspiry-real-estate-admin.css', array(), $this->version, 'all' );
+        if( $this::is_property_edit_page() ) {
+            wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/inspiry-real-estate-admin.css', array(), $this->version, 'all');
+        }
 
 	}
 
@@ -94,21 +84,28 @@ class Inspiry_Real_Estate_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Inspiry_Real_Estate_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Inspiry_Real_Estate_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+        if( $this::is_property_edit_page() ) {
+            wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/inspiry-real-estate-admin.js', array('jquery', 'jquery-ui-sortable'), $this->version, false);
+        }
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/inspiry-real-estate-admin.js', array( 'jquery' ), $this->version, false );
+    }
 
-	}
+    /**
+     * Check if it is a property edit page.
+     * @return bool
+     */
+    public static function is_property_edit_page(){
+        if ( is_admin() ) {
+            global $pagenow;
+            if ( in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) ) {
+                global $post_type;
+                if ( 'property' == $post_type ) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     /**
      * Add plugin settings page
