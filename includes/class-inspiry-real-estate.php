@@ -57,6 +57,32 @@ class Inspiry_Real_Estate {
 	 */
 	protected $version;
 
+    /**
+     * Contains plugin options value
+     *
+     * @var mixed|void $plugin_options  Contains plugin options value.
+     */
+    protected $plugin_options;
+
+    /**
+     * Instance variable for singleton pattern
+     *
+     * @var object class instance
+     */
+    private static $instance = null;
+
+    /**
+     * Return class instance
+     *
+     * @return Inspiry_Real_Estate|null
+     */
+    public static function get_instance() {
+        if ( null == self::$instance ) {
+            self::$instance = new self;
+        }
+        return self::$instance;
+    }
+
 	/**
 	 * Define the core functionality of the plugin.
 	 *
@@ -66,10 +92,11 @@ class Inspiry_Real_Estate {
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct() {
+	private function __construct() {
 
 		$this->plugin_name = 'inspiry-real-estate';
 		$this->version = '1.0.0';
+        $this->plugin_options = get_option( 'inspiry_price_format_option' );
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -107,6 +134,11 @@ class Inspiry_Real_Estate {
 		 * of the plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-inspiry-real-estate-i18n.php';
+
+        /**
+         * The class responsible for defining property functionality
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-inspiry-property.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
@@ -281,6 +313,48 @@ class Inspiry_Real_Estate {
                 error_log( $message );
             }
         }
+    }
+
+    public function get_currency_sign() {
+        if( isset( $this->plugin_options[ 'currency_sign' ] ) ) {
+            return $this->plugin_options[ 'currency_sign' ];
+        }
+        return '$';
+    }
+
+    public function get_currency_position() {
+        if( isset( $this->plugin_options[ 'currency_position' ] ) ) {
+            return $this->plugin_options[ 'currency_position' ];
+        }
+        return 'before';
+    }
+
+    public function get_thousand_separator() {
+        if( isset( $this->plugin_options[ 'thousand_separator' ] ) ) {
+            return $this->plugin_options[ 'thousand_separator' ];
+        }
+        return ',';
+    }
+
+    public function get_decimal_separator() {
+        if( isset( $this->plugin_options[ 'decimal_separator' ] ) ) {
+            return $this->plugin_options[ 'decimal_separator' ];
+        }
+        return '.';
+    }
+
+    public function get_number_of_decimals() {
+        if( isset( $this->plugin_options[ 'number_of_decimals' ] ) ) {
+            return intval( $this->plugin_options[ 'number_of_decimals' ] );
+        }
+        return 2;
+    }
+
+    public function get_empty_price_text() {
+        if( isset( $this->plugin_options[ 'empty_price_text' ] ) ) {
+            return $this->plugin_options[ 'empty_price_text' ];
+        }
+        return null;
     }
 
 }

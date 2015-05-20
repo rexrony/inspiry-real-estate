@@ -517,7 +517,7 @@ class Inspiry_Property_Post_Type {
                 array(
                     'name' => __('Property Gallery Images', 'inspiry-real-estate'),
                     'id' => "{$prefix}property_images",
-                    'desc' => __('Images should have minimum size of 770px by 386px for thumbnails on right and 830px by 460px for thumbnails on bottom. Bigger size images will be cropped automatically.', 'inspiry-real-estate'),
+                    'desc' => __('Images should have minimum size of 850px by 567px. Bigger size images will be cropped automatically.', 'inspiry-real-estate'),
                     'type' => 'image_advanced',
                     'max_file_uploads' => 48,
                     'columns' => 12,

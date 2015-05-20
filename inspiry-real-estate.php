@@ -56,13 +56,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-inspiry-real-estate.php';
  * Since everything within the plugin is registered via hooks,
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
- *
- * @since    1.0.0
  */
-function run_inspiry_real_estate() {
 
-	$plugin = new Inspiry_Real_Estate();
-	$plugin->run();
-
-}
-run_inspiry_real_estate();
+$inspiry_real_estate = Inspiry_Real_Estate::get_instance();
+$inspiry_real_estate->run();
