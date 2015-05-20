@@ -69,6 +69,10 @@ class Inspiry_Property {
         }
     }
 
+    /**
+     * Return property custom id
+     * @return bool|mixed
+     */
     public function get_custom_ID(){
         if ( ! $this->property_id ) {
             return false;
@@ -76,6 +80,10 @@ class Inspiry_Property {
         return $this->get_property_meta( $this->meta_keys['custom_id'] );
     }
 
+    /**
+     * Return property area
+     * @return bool|mixed
+     */
     public function get_area(){
         if ( ! $this->property_id ) {
             return false;
@@ -83,6 +91,10 @@ class Inspiry_Property {
         return $this->get_property_meta( $this->meta_keys['area'] );
     }
 
+    /**
+     * Return property area postfix
+     * @return bool|mixed
+     */
     public function get_area_postfix(){
         if ( ! $this->property_id ) {
             return false;
@@ -90,6 +102,10 @@ class Inspiry_Property {
         return $this->get_property_meta( $this->meta_keys['area_postfix'] );
     }
 
+    /**
+     * Return property beds
+     * @return bool|mixed
+     */
     public function get_beds(){
         if ( ! $this->property_id ) {
             return false;
@@ -97,6 +113,10 @@ class Inspiry_Property {
         return $this->get_property_meta( $this->meta_keys['beds'] );
     }
 
+    /**
+     * Return property baths
+     * @return bool|mixed
+     */
     public function get_baths(){
         if ( ! $this->property_id ) {
             return false;
@@ -104,6 +124,10 @@ class Inspiry_Property {
         return $this->get_property_meta( $this->meta_keys['baths'] );
     }
 
+    /**
+     * Return property garages
+     * @return bool|mixed
+     */
     public function get_garages(){
         if ( ! $this->property_id ) {
             return false;
@@ -123,7 +147,6 @@ class Inspiry_Property {
 
     /**
      * Returns property price
-     *
      * @return string price
      */
     public function get_price() {
@@ -172,9 +195,7 @@ class Inspiry_Property {
             return $formatted_price;
 
         } else {
-
             return $inspiry_real_estate->get_empty_price_text();
-
         }
 
     }
