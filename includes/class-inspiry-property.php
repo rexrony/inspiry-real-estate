@@ -22,14 +22,15 @@ class Inspiry_Property {
      * @var array property meta keys
      */
     private $meta_keys = array(
-        'price'         => 'REAL_HOMES_property_price',
-        'price_postfix' => 'REAL_HOMES_property_price_postfix',
-        'custom_id'     => 'REAL_HOMES_property_id',
-        'area'          => 'REAL_HOMES_property_size',
-        'area_postfix'  => 'REAL_HOMES_property_size_postfix',
-        'beds'          => 'REAL_HOMES_property_bedrooms',
-        'baths'         => 'REAL_HOMES_property_bathrooms',
-        'garages'       => 'REAL_HOMES_property_garage',
+        'price'                 => 'REAL_HOMES_property_price',
+        'price_postfix'         => 'REAL_HOMES_property_price_postfix',
+        'custom_id'             => 'REAL_HOMES_property_id',
+        'area'                  => 'REAL_HOMES_property_size',
+        'area_postfix'          => 'REAL_HOMES_property_size_postfix',
+        'beds'                  => 'REAL_HOMES_property_bedrooms',
+        'baths'                 => 'REAL_HOMES_property_bathrooms',
+        'garages'               => 'REAL_HOMES_property_garage',
+        'additional_details'    => 'REAL_HOMES_additional_details',
     );
 
     /**
@@ -133,6 +134,17 @@ class Inspiry_Property {
             return false;
         }
         return $this->get_property_meta( $this->meta_keys['garages'] );
+    }
+
+    /**
+     * Return property additional details
+     * @return bool|mixed
+     */
+    public function get_additional_details(){
+        if ( ! $this->property_id ) {
+            return false;
+        }
+        return maybe_unserialize ( $this->get_property_meta( $this->meta_keys['additional_details'] ) );
     }
 
     /**
