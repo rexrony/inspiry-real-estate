@@ -24,6 +24,12 @@ class Inspiry_Property {
     private $meta_keys = array(
         'price'         => 'REAL_HOMES_property_price',
         'price_postfix' => 'REAL_HOMES_property_price_postfix',
+        'custom_id'     => 'REAL_HOMES_property_id',
+        'area'          => 'REAL_HOMES_property_size',
+        'area_postfix'  => 'REAL_HOMES_property_size_postfix',
+        'beds'          => 'REAL_HOMES_property_bedrooms',
+        'baths'         => 'REAL_HOMES_property_bathrooms',
+        'garages'       => 'REAL_HOMES_property_garage',
     );
 
     /**
@@ -63,14 +69,56 @@ class Inspiry_Property {
         }
     }
 
-    /**
-     * Display property price
-     */
-    public function property_price() {
+    public function get_custom_ID(){
         if ( ! $this->property_id ) {
             return false;
         }
-        echo $this->get_property_price();
+        return $this->get_property_meta( $this->meta_keys['custom_id'] );
+    }
+
+    public function get_area(){
+        if ( ! $this->property_id ) {
+            return false;
+        }
+        return $this->get_property_meta( $this->meta_keys['area'] );
+    }
+
+    public function get_area_postfix(){
+        if ( ! $this->property_id ) {
+            return false;
+        }
+        return $this->get_property_meta( $this->meta_keys['area_postfix'] );
+    }
+
+    public function get_beds(){
+        if ( ! $this->property_id ) {
+            return false;
+        }
+        return $this->get_property_meta( $this->meta_keys['beds'] );
+    }
+
+    public function get_baths(){
+        if ( ! $this->property_id ) {
+            return false;
+        }
+        return $this->get_property_meta( $this->meta_keys['baths'] );
+    }
+
+    public function get_garages(){
+        if ( ! $this->property_id ) {
+            return false;
+        }
+        return $this->get_property_meta( $this->meta_keys['garages'] );
+    }
+
+    /**
+     * Display property price
+     */
+    public function price() {
+        if ( ! $this->property_id ) {
+            return false;
+        }
+        echo $this->get_price();
     }
 
     /**
@@ -78,15 +126,12 @@ class Inspiry_Property {
      *
      * @return string price
      */
-    public function get_property_price() {
-
+    public function get_price() {
         if ( ! $this->property_id ) {
             return null;
         }
-
         $price_amount = doubleval( $this->get_property_meta( $this->meta_keys[ 'price' ] ) );
         $price_postfix = $this->get_property_meta( $this->meta_keys[ 'price_postfix' ] );
-
         return $this->format_price( $price_amount, $price_postfix );
     }
 
