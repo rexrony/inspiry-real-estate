@@ -200,4 +200,54 @@ class Inspiry_Property {
 
     }
 
+    /**
+     * Return property types
+     * @return bool|null|string
+     */
+    public function get_types() {
+        return $this->get_taxonomy_terms( 'property-type' );
+    }
+
+    /**
+     * Return property status
+     * @return bool|null|string
+     */
+    public function get_status() {
+        return $this->get_taxonomy_terms( 'property-status' );
+    }
+
+    /**
+     * Return taxonomy terms
+     * @param $taxonomy
+     * @return bool|null|string
+     */
+    public function get_taxonomy_terms( $taxonomy ) {
+
+        if ( !$taxonomy || !taxonomy_exists( $taxonomy ) ) {
+            return false;
+        }
+
+        if ( ! $this->property_id ) {
+            return false;
+        }
+
+        $taxonomy_terms = get_the_terms( $this->property_id, $taxonomy );
+        $terms_count = count( $taxonomy_terms );
+        if ( 0 < $terms_count ) {
+            $taxonomy_terms_str = '';
+            $loop_count = 1;
+            foreach ( $taxonomy_terms as $single_term ) {
+                $taxonomy_terms_str .= $single_term->name;
+                if ( $loop_count < $terms_count ) {
+                    $taxonomy_terms_str .= ', ';
+                }
+                $loop_count++;
+            }
+            return $taxonomy_terms_str;
+        }
+
+        return null;
+
+    }
+
 }
