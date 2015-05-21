@@ -74,6 +74,14 @@ class Inspiry_Property {
     }
 
     /**
+     * Return property post id
+     * @return bool|mixed
+     */
+    public function get_post_ID(){
+        return $this->property_id;
+    }
+
+    /**
      * Return property custom id
      * @return bool|mixed
      */
