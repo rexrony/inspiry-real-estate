@@ -33,6 +33,7 @@ class Inspiry_Property {
         'additional_details'    => 'REAL_HOMES_additional_details',
         'address'               => 'REAL_HOMES_property_address',
         'map_location'          => 'REAL_HOMES_property_location',
+        'attachments'           => 'REAL_HOMES_attachments',
     );
 
     /**
@@ -197,6 +198,20 @@ class Inspiry_Property {
             if( is_array( $lat_lng ) && isset( $lat_lng[1] ) ) {
                 return $lat_lng[1];
             }
+        }
+        return false;
+    }
+
+    /**
+     * Return attachments array
+     * @return bool|mixed
+     */
+    public function get_attachments() {
+        if ( !$this->property_id ) {
+            return false;
+        }
+        if ( isset( $this->meta_data[ $this->meta_keys['attachments'] ] ) ) {
+            return $this->meta_data[ $this->meta_keys['attachments'] ];
         }
         return false;
     }
