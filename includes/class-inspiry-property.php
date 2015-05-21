@@ -31,6 +31,8 @@ class Inspiry_Property {
         'baths'                 => 'REAL_HOMES_property_bathrooms',
         'garages'               => 'REAL_HOMES_property_garage',
         'additional_details'    => 'REAL_HOMES_additional_details',
+        'address'               => 'REAL_HOMES_property_address',
+        'map_location'          => 'REAL_HOMES_property_location',
     );
 
     /**
@@ -129,7 +131,7 @@ class Inspiry_Property {
      * Return property garages
      * @return bool|mixed
      */
-    public function get_garages(){
+    public function get_garages() {
         if ( ! $this->property_id ) {
             return false;
         }
@@ -140,11 +142,63 @@ class Inspiry_Property {
      * Return property additional details
      * @return bool|mixed
      */
-    public function get_additional_details(){
+    public function get_additional_details() {
         if ( ! $this->property_id ) {
             return false;
         }
         return maybe_unserialize ( $this->get_property_meta( $this->meta_keys['additional_details'] ) );
+    }
+
+    /**
+     * Return property address
+     * @return bool|mixed
+     */
+    public function get_address() {
+        if ( ! $this->property_id ) {
+            return false;
+        }
+        return $this->get_property_meta( $this->meta_keys['address'] );
+    }
+
+    /**
+     * Return property location, A string containing comma separated values of latitude and longitude
+     * @return bool|mixed
+     */
+    public function get_location() {
+        if ( ! $this->property_id ) {
+            return false;
+        }
+        return $this->get_property_meta( $this->meta_keys['map_location'] );
+    }
+
+    /**
+     * Return latitude value
+     * @return bool|string
+     */
+    public function get_latitude() {
+        $location = $this->get_location();
+        if ( $location ) {
+            $lat_lng = explode( ',', $location );
+            if( is_array( $lat_lng ) && isset( $lat_lng[0] ) ) {
+                return $lat_lng[0];
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Return longitude value
+     * @return bool|string
+     */
+    public function get_longitude() {
+        $location = $this->get_location();
+        if ( $location ) {
+            $lat_lng = explode( ',', $location );
+            if( is_array( $lat_lng ) && isset( $lat_lng[1] ) ) {
+                return $lat_lng[1];
+            }
+        }
+        return false;
     }
 
     /**
@@ -234,15 +288,9 @@ class Inspiry_Property {
      * @return bool|null|string
      */
     public function get_taxonomy_terms( $taxonomy ) {
-
-        if ( !$taxonomy || !taxonomy_exists( $taxonomy ) ) {
+        if ( !$this->property_id || !$taxonomy || !taxonomy_exists( $taxonomy ) ) {
             return false;
         }
-
-        if ( ! $this->property_id ) {
-            return false;
-        }
-
         $taxonomy_terms = get_the_terms( $this->property_id, $taxonomy );
         $terms_count = count( $taxonomy_terms );
         if ( 0 < $terms_count ) {
@@ -257,9 +305,30 @@ class Inspiry_Property {
             }
             return $taxonomy_terms_str;
         }
-
         return null;
+    }
 
+    /**
+     * Return slug or name of first term of given taxonomy
+     * @param $taxonomy
+     * @param string $field
+     * @return null|string
+     */
+    public function get_taxonomy_first_term( $taxonomy, $field = 'slug' ) {
+        if ( !$this->property_id || !$taxonomy || !taxonomy_exists( $taxonomy ) ) {
+            return null;
+        }
+        $taxonomy_terms = get_the_terms( $this->property_id, $taxonomy );
+        if ( 0 < count( $taxonomy_terms ) ) {
+            foreach ( $taxonomy_terms as $single_term ) {
+                if ( $field == 'name' ){
+                    return $single_term->name;
+                } elseif ( $field == 'slug' ){
+                    return $single_term->slug;
+                }
+            }
+        }
+        return null;
     }
 
 }
