@@ -118,7 +118,7 @@ class Inspiry_Agent {
         if ( ! $this->agent_id ) {
             return false;
         }
-        return $this->get_property_meta( $this->meta_keys['email'] );
+        return is_email( $this->get_property_meta( $this->meta_keys['email'] ) );
     }
 
     /**
