@@ -34,6 +34,8 @@ class Inspiry_Property {
         'address'               => 'REAL_HOMES_property_address',
         'map_location'          => 'REAL_HOMES_property_location',
         'attachments'           => 'REAL_HOMES_attachments',
+        'agent_display_option'  => 'REAL_HOMES_agent_display_option',
+        'agent_id'              => 'REAL_HOMES_agents',
     );
 
     /**
@@ -47,16 +49,17 @@ class Inspiry_Property {
      */
     public function __construct( $property_id = null ) {
 
-        if ( ! $property_id ) {
+        if ( !$property_id ) {
             $property_id = get_the_ID();
+        } else {
+            $property_id = intval( $property_id );
         }
 
-        if ( ! $property_id ) {
-            return;
+        if ( $property_id > 0 ) {
+            $this->property_id = $property_id;
+            $this->meta_data = get_post_custom( $property_id );
         }
 
-        $this->property_id = $property_id;
-        $this->meta_data = get_post_custom( $property_id );
     }
 
     /**
@@ -222,6 +225,28 @@ class Inspiry_Property {
             return $this->meta_data[ $this->meta_keys['attachments'] ];
         }
         return false;
+    }
+
+    /**
+     * Get agent display option
+     * @return bool|mixed
+     */
+    public function get_agent_display_option() {
+        if ( ! $this->property_id ) {
+            return false;
+        }
+        return $this->get_property_meta( $this->meta_keys['agent_display_option'] );
+    }
+
+    /**
+     * Get agent id
+     * @return bool|mixed
+     */
+    public function get_agent_id() {
+        if ( ! $this->property_id ) {
+            return false;
+        }
+        return $this->get_property_meta( $this->meta_keys['agent_id'] );
     }
 
     /**
