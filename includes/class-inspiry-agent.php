@@ -24,6 +24,7 @@ class Inspiry_Agent {
         'office'        => 'REAL_HOMES_office_number',
         'fax'           => 'REAL_HOMES_fax_number',
         'email'         => 'REAL_HOMES_agent_email',
+        'office_address'=> 'inspiry_office_address',
         'facebook'      => 'REAL_HOMES_facebook_url',
         'twitter'       => 'REAL_HOMES_twitter_url',
         'google'        => 'REAL_HOMES_google_plus_url',
@@ -88,10 +89,10 @@ class Inspiry_Agent {
     }
 
     /**
-     * Return office number
+     * Return office phone number
      * @return bool|mixed
      */
-    public function get_office(){
+    public function get_office_phone(){
         if ( ! $this->agent_id ) {
             return false;
         }
@@ -186,6 +187,8 @@ class Inspiry_Agent {
         return $this->get_property_meta( $this->meta_keys['instagram'] );
     }
 
+
+
     /**
      * Return job title
      * @return bool|mixed
@@ -195,6 +198,17 @@ class Inspiry_Agent {
             return false;
         }
         return $this->get_property_meta( $this->meta_keys['job_title'] );
+    }
+
+    /**
+     * Return office address
+     * @return bool|mixed
+     */
+    public function get_office_address(){
+        if ( ! $this->agent_id ) {
+            return false;
+        }
+        return $this->get_property_meta( $this->meta_keys['office_address'] );
     }
 
 }

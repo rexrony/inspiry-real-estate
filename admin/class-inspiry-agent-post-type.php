@@ -185,6 +185,11 @@ class Inspiry_Agent_Post_Type {
                     'type'  => 'text',
                 ),
                 array(
+                    'name'  => __( 'Office Address', 'inspiry-real-estate' ),
+                    'id'    => "inspiry_office_address",
+                    'type'  => 'text',
+                ),
+                array(
                     'name'  => __('Facebook URL', 'inspiry-real-estate'),
                     'id'    => "{$prefix}facebook_url",
                     'type'  => 'url',
