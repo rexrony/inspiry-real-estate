@@ -373,6 +373,8 @@ class Inspiry_Property {
                     return $single_term->name;
                 } elseif ( $field == 'slug' ){
                     return $single_term->slug;
+                } else {
+                    return $single_term;
                 }
             }
         }
