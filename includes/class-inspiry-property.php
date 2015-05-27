@@ -309,9 +309,35 @@ class Inspiry_Property {
             return $formatted_price;
 
         } else {
+
             return $inspiry_real_estate->get_empty_price_text();
+
         }
 
+    }
+
+    /**
+     * Returns property price without postfix
+     * @return string price
+     */
+    public function get_price_without_postfix() {
+        if ( ! $this->property_id ) {
+            return null;
+        }
+        $price_amount = doubleval( $this->get_property_meta( $this->meta_keys[ 'price' ] ) );
+        return $this->format_price( $price_amount );
+    }
+
+    /**
+     * Returns property price postfix
+     * @return string price postfix
+     */
+    public function get_price_postfix() {
+        if ( ! $this->property_id ) {
+            return null;
+        }
+        $price_postfix = $this->get_property_meta( $this->meta_keys[ 'price_postfix' ] );
+        return $price_postfix;
     }
 
     /**
@@ -341,7 +367,7 @@ class Inspiry_Property {
         }
         $taxonomy_terms = get_the_terms( $this->property_id, $taxonomy );
         $terms_count = count( $taxonomy_terms );
-        if ( 0 < $terms_count ) {
+        if ( 0 < $terms_count && !is_wp_error( $taxonomy_terms ) ) {
             $taxonomy_terms_str = '';
             $loop_count = 1;
             foreach ( $taxonomy_terms as $single_term ) {
