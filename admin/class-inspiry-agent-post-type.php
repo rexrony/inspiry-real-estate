@@ -46,7 +46,7 @@ class Inspiry_Agent_Post_Type {
             'label'               => __( 'agent', 'inspiry-real-estate' ),
             'description'         => __( 'Real Estate Agent', 'inspiry-real-estate' ),
             'labels'              => $labels,
-            'supports'            => array( 'title', 'editor', 'thumbnail', 'revisions', ),
+            'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt', 'revisions', ),
             'hierarchical'        => false,
             'public'              => true,
             'show_ui'             => true,
