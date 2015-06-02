@@ -36,6 +36,7 @@ class Inspiry_Property {
         'attachments'           => 'REAL_HOMES_attachments',
         'agent_display_option'  => 'REAL_HOMES_agent_display_option',
         'agent_id'              => 'REAL_HOMES_agents',
+        'slider_image'          => 'REAL_HOMES_slider_image',
     );
 
     /**
@@ -247,6 +248,23 @@ class Inspiry_Property {
             return false;
         }
         return $this->get_property_meta( $this->meta_keys['agent_id'] );
+    }
+
+    /**
+     * Get slider image URL
+     * @return bool|string
+     */
+    public function get_slider_image() {
+        if ( ! $this->property_id ) {
+            return false;
+        }
+
+        $slider_image_id = $this->get_property_meta( $this->meta_keys['slider_image'] );
+        if ( $slider_image_id ) {
+            return wp_get_attachment_url( $slider_image_id );
+        }
+
+        return false;
     }
 
     /**
