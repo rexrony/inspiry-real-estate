@@ -37,6 +37,7 @@ class Inspiry_Property {
         'agent_display_option'  => 'REAL_HOMES_agent_display_option',
         'agent_id'              => 'REAL_HOMES_agents',
         'slider_image'          => 'REAL_HOMES_slider_image',
+        'payment_status'        => 'payment_status',
     );
 
     /**
@@ -359,6 +360,18 @@ class Inspiry_Property {
     }
 
     /**
+     * Returns payment status of property
+     * @return mixed|null
+     */
+    public function get_payment_status() {
+        if ( ! $this->property_id ) {
+            return null;
+        }
+        $payment_status = $this->get_property_meta( $this->meta_keys[ 'payment_status' ] );
+        return $payment_status;
+    }
+
+    /**
      * Return property types
      * @return bool|null|string
      */
@@ -384,8 +397,8 @@ class Inspiry_Property {
             return false;
         }
         $taxonomy_terms = get_the_terms( $this->property_id, $taxonomy );
-        $terms_count = count( $taxonomy_terms );
-        if ( 0 < $terms_count && !is_wp_error( $taxonomy_terms ) ) {
+        if ( !empty( $taxonomy_terms ) && !is_wp_error( $taxonomy_terms ) ) {
+            $terms_count = count( $taxonomy_terms );
             $taxonomy_terms_str = '';
             $loop_count = 1;
             foreach ( $taxonomy_terms as $single_term ) {
@@ -411,7 +424,7 @@ class Inspiry_Property {
             return null;
         }
         $taxonomy_terms = get_the_terms( $this->property_id, $taxonomy );
-        if ( 0 < count( $taxonomy_terms ) ) {
+        if ( !empty( $taxonomy_terms ) && !is_wp_error( $taxonomy_terms ) ) {
             foreach ( $taxonomy_terms as $single_term ) {
                 if ( $field == 'name' ){
                     return $single_term->name;
