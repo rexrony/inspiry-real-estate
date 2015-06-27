@@ -38,6 +38,8 @@ class Inspiry_Property {
         'agent_id'              => 'REAL_HOMES_agents',
         'slider_image'          => 'REAL_HOMES_slider_image',
         'payment_status'        => 'payment_status',
+        'video_url'             => 'REAL_HOMES_tour_video_url',
+        'video_image'           => 'REAL_HOMES_tour_video_image',
     );
 
     /**
@@ -369,6 +371,30 @@ class Inspiry_Property {
         }
         $payment_status = $this->get_property_meta( $this->meta_keys[ 'payment_status' ] );
         return $payment_status;
+    }
+
+    /**
+     * Returns url of video if exists
+     * @return mixed|null
+     */
+    public function get_video_url() {
+        if ( !$this->property_id ) {
+            return null;
+        }
+        $video_url = $this->get_property_meta( $this->meta_keys[ 'video_url' ] );
+        return $video_url;
+    }
+
+    /**
+     * Return video image id if exists
+     * @return mixed|null
+     */
+    public function get_video_image() {
+        if ( !$this->property_id ) {
+            return null;
+        }
+        $video_url = $this->get_property_meta( $this->meta_keys[ 'video_image' ] );
+        return $video_url;
     }
 
     /**
