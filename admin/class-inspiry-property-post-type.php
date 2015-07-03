@@ -361,6 +361,11 @@ class Inspiry_Property_Post_Type {
         }
 
         // Property Details Meta Box
+        $default_desc = __( 'Consult theme documentation for required image size.', 'inspiry-real-estate' );
+        $gallery_images_desc = apply_filters( 'inspiry_gallery_description', $default_desc );
+        $video_image_desc = apply_filters( 'inspiry_video_description', $default_desc );
+        $slider_image_desc = apply_filters( 'inspiry_slider_description', $default_desc );
+
         $meta_boxes[] = array(
             'id' => 'property-meta-box',
             'title' => __('Property', 'inspiry-real-estate'),
@@ -514,10 +519,11 @@ class Inspiry_Property_Post_Type {
                     'columns' => 12,
                     'tab' => 'gallery',
                 ),
+
                 array(
                     'name' => __('Property Gallery Images', 'inspiry-real-estate'),
                     'id' => "{$prefix}property_images",
-                    'desc' => __('Images should have minimum size of 850px by 567px. Bigger size images will be cropped automatically.', 'inspiry-real-estate'),
+                    'desc' => $gallery_images_desc,
                     'type' => 'image_advanced',
                     'max_file_uploads' => 48,
                     'columns' => 12,
@@ -537,7 +543,7 @@ class Inspiry_Property_Post_Type {
                 array(
                     'name' => __('Virtual Tour Video Image', 'inspiry-real-estate'),
                     'id' => "{$prefix}tour_video_image",
-                    'desc' => __('Provide an image that will be displayed as a place holder and when user will click over it the video will be opened in a lightbox. You must provide this image otherwise the video will not be displayed. Image should have minimum width of 818px and minimum height 417px. Bigger size images will be cropped automatically.', 'inspiry-real-estate'),
+                    'desc' => $video_image_desc,
                     'type' => 'image_advanced',
                     'max_file_uploads' => 1,
                     'columns' => 12,
@@ -616,7 +622,7 @@ class Inspiry_Property_Post_Type {
                 array(
                     'name' => __('Slider Image', 'inspiry-real-estate'),
                     'id' => "{$prefix}slider_image",
-                    'desc' => __('The recommended image size is 2000px by 700px. You can use bigger or smaller image but try to keep the same height to width ratio and use the exactly same size images for all properties that will be added in slider.', 'inspiry-real-estate'),
+                    'desc' => $slider_image_desc,
                     'type' => 'image_advanced',
                     'max_file_uploads' => 1,
                     'columns' => 12,
