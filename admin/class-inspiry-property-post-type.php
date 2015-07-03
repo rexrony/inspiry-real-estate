@@ -506,20 +506,6 @@ class Inspiry_Property_Post_Type {
                     'tab' => 'details',
                 ),
 
-                // Gallery
-                array(
-                    'name' => __('Gallery Type You Want to Use', 'inspiry-real-estate'),
-                    'id' => "{$prefix}gallery_slider_type",
-                    'type' => 'radio',
-                    'std' => 'thumb-on-right',
-                    'options' => array(
-                        'thumb-on-right' => __('Gallery with thumbnails on right', 'inspiry-real-estate'),
-                        'thumb-on-bottom' => __('Gallery with thumbnails on bottom', 'inspiry-real-estate')
-                    ),
-                    'columns' => 12,
-                    'tab' => 'gallery',
-                ),
-
                 array(
                     'name' => __('Property Gallery Images', 'inspiry-real-estate'),
                     'id' => "{$prefix}property_images",
@@ -529,7 +515,6 @@ class Inspiry_Property_Post_Type {
                     'columns' => 12,
                     'tab' => 'gallery',
                 ),
-
 
                 // Property Video
                 array(
