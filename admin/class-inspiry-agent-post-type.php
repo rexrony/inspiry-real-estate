@@ -120,18 +120,21 @@ class Inspiry_Agent_Post_Type {
                 break;
 
             case 'email':
-                /*$property_id = get_post_meta ( $post->ID, 'REAL_HOMES_property_id', true );
-                if( ! empty ( $property_id ) ) {
-                    echo $property_id;
+                $agent_email = is_email( get_post_meta ( $post->ID, 'REAL_HOMES_agent_email', true ) );
+                if ( $agent_email ) {
+                    echo $agent_email;
                 } else {
                     _e ( 'NA', 'inspiry-real-estate' );
-                }*/
-                echo 'to do';   // todo: agent email
+                }
                 break;
 
             case 'mobile':
-                //property_price();
-                echo 'to do';   // todo: agent mobile
+                $mobile_number = get_post_meta ( $post->ID, 'REAL_HOMES_mobile_number', true );
+                if ( !empty( $mobile_number ) ) {
+                    echo $mobile_number;
+                } else {
+                    _e ( 'NA', 'inspiry-real-estate' );
+                }
                 break;
 
             default:
