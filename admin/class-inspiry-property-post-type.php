@@ -516,6 +516,7 @@ class Inspiry_Property_Post_Type {
                     'tab' => 'gallery',
                 ),
 
+
                 // Property Video
                 array(
                     'id' => "{$prefix}tour_video_url",

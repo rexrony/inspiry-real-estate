@@ -1,0 +1,66 @@
+<wpml-config>
+
+    <custom-types>
+        <custom-type translate="1">property</custom-type>
+        <custom-type translate="1">agent</custom-type>
+        <custom-type translate="1">partners</custom-type>
+    </custom-types>
+
+    <taxonomies>
+        <taxonomy translate="1">property-feature</taxonomy>
+        <taxonomy translate="1">property-type</taxonomy>
+        <taxonomy translate="1">property-city</taxonomy>
+        <taxonomy translate="1">property-status</taxonomy>
+    </taxonomies>
+
+    <custom-fields>
+        <custom-field action="copy">_thumbnail_id</custom-field>
+        <custom-field action="translate">REAL_HOMES_property_price</custom-field>
+        <custom-field action="translate">REAL_HOMES_property_price_postfix</custom-field>
+        <custom-field action="translate">REAL_HOMES_property_size</custom-field>
+        <custom-field action="translate">REAL_HOMES_property_size_postfix</custom-field>
+        <custom-field action="copy">REAL_HOMES_property_bedrooms</custom-field>
+        <custom-field action="copy">REAL_HOMES_property_bathrooms</custom-field>
+        <custom-field action="copy">REAL_HOMES_property_garage</custom-field>
+        <custom-field action="translate">REAL_HOMES_property_id</custom-field>
+        <custom-field action="translate">REAL_HOMES_property_address</custom-field>
+        <custom-field action="translate">REAL_HOMES_property_location</custom-field>
+        <custom-field action="copy">REAL_HOMES_property_images</custom-field>
+        <custom-field action="translate">REAL_HOMES_tour_video_url</custom-field>
+        <custom-field action="copy">REAL_HOMES_tour_video_image</custom-field>
+        <custom-field action="translate">REAL_HOMES_agent_display_option</custom-field>
+        <custom-field action="translate">REAL_HOMES_agents</custom-field>
+        <custom-field action="translate">REAL_HOMES_featured</custom-field>
+        <custom-field action="translate">REAL_HOMES_attachments</custom-field>
+        <custom-field action="translate">REAL_HOMES_property_private_note</custom-field>
+        <custom-field action="translate">REAL_HOMES_add_in_slider</custom-field>
+        <custom-field action="copy">REAL_HOMES_slider_image</custom-field>
+        <custom-field action="translate">REAL_HOMES_page_banner_image</custom-field>
+        <custom-field action="translate">REAL_HOMES_additional_details</custom-field>
+        <custom-field action="translate">inspiry_job_title</custom-field>
+        <custom-field action="translate">REAL_HOMES_agent_email</custom-field>
+        <custom-field action="translate">REAL_HOMES_mobile_number</custom-field>
+        <custom-field action="translate">REAL_HOMES_office_number</custom-field>
+        <custom-field action="translate">REAL_HOMES_fax_number</custom-field>
+        <custom-field action="translate">inspiry_office_address</custom-field>
+        <custom-field action="translate">REAL_HOMES_facebook_url</custom-field>
+        <custom-field action="translate">REAL_HOMES_twitter_url</custom-field>
+        <custom-field action="translate">REAL_HOMES_google_plus_url</custom-field>
+        <custom-field action="translate">REAL_HOMES_linked_in_url</custom-field>
+        <custom-field action="translate">inspiry_pinterest_url</custom-field>
+        <custom-field action="translate">inspiry_instagram_url</custom-field>
+        <custom-field action="translate">REAL_HOMES_partner_url</custom-field>
+    </custom-fields>
+
+    <admin-texts>
+        <key name="inspiry_price_format_option">
+            <key name="currency_sign" />
+            <key name="currency_position" />
+            <key name="thousand_separator" />
+            <key name="decimal_separator" />
+            <key name="number_of_decimals" />
+            <key name="empty_price_text" />
+        </key>
+    </admin-texts>
+
+</wpml-config>

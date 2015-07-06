@@ -161,6 +161,11 @@ class Inspiry_Real_Estate {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-inspiry-agent-post-type.php';
 
         /**
+         * The class responsible for providing partners custom post type and related stuff.
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-inspiry-partner-post-type.php';
+
+        /**
          * The class responsible for providing additional details meta box
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-inspiry-additional-details-meta-box.php';
@@ -224,6 +229,12 @@ class Inspiry_Real_Estate {
         $this->loader->add_action( 'init', $agent_post_type, 'register_agent_post_type' );
         $this->loader->add_filter( 'rwmb_meta_boxes', $agent_post_type, 'register_meta_boxes' );
 
+
+        // Partner Post Type
+        $partner_post_type = new Inspiry_Partner_Post_Type();
+        $this->loader->add_action( 'init', $partner_post_type, 'register_partner_post_type' );
+        $this->loader->add_filter( 'rwmb_meta_boxes', $partner_post_type, 'register_meta_boxes' );
+
         if ( is_admin() ) {
             global $pagenow;
 
@@ -237,6 +248,12 @@ class Inspiry_Real_Estate {
             if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == 'agent' ) {
                 $this->loader->add_filter( 'manage_edit-agent_columns', $agent_post_type, 'register_custom_column_titles' );
                 $this->loader->add_action( 'manage_posts_custom_column', $agent_post_type, 'display_custom_column' );
+            }
+
+            // partner custom columns
+            if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == 'partners' ) {
+                $this->loader->add_filter( 'manage_edit-partners_columns', $partner_post_type, 'register_custom_column_titles' );
+                $this->loader->add_action( 'manage_posts_custom_column', $partner_post_type, 'display_custom_column' );
             }
         }
 
@@ -321,6 +338,7 @@ class Inspiry_Real_Estate {
     }
 
     public function get_currency_sign() {
+        $this->refresh();
         if( isset( $this->plugin_options[ 'currency_sign' ] ) ) {
             return $this->plugin_options[ 'currency_sign' ];
         }
@@ -356,10 +374,18 @@ class Inspiry_Real_Estate {
     }
 
     public function get_empty_price_text() {
+        $this->refresh();
         if( isset( $this->plugin_options[ 'empty_price_text' ] ) ) {
             return $this->plugin_options[ 'empty_price_text' ];
         }
         return null;
+    }
+
+    private function refresh(){
+        if ( function_exists( 'icl_object_id' ) ) {
+            // re-read only for wpml
+            $this->plugin_options = get_option( 'inspiry_price_format_option' );
+        }
     }
 
 }
