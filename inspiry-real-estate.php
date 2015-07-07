@@ -60,3 +60,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-inspiry-real-estate.php';
 
 $inspiry_real_estate = Inspiry_Real_Estate::get_instance();
 $inspiry_real_estate->run();
+
+/*
+ * Meta Box Extensions
+ */
+require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-columns/meta-box-columns.php' );         // columns
+require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-show-hide/meta-box-show-hide.php' );     // show hid
+require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-tabs/meta-box-tabs.php' );               // tabs
