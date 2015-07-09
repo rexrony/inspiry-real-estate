@@ -307,11 +307,7 @@ class Inspiry_Property_Post_Type {
 
             case 'thumb':
                 if ( has_post_thumbnail ( $post->ID ) ) {
-                    ?>
-                    <a href="<?php the_permalink(); ?>" target="_blank">
-                        <?php the_post_thumbnail( array( 130, 130 ) );?>
-                    </a>
-                    <?php
+                    ?><a href="<?php the_permalink(); ?>" target="_blank"><?php the_post_thumbnail( array( 130, 130 ) );?></a><?php
                 } else {
                     _e ( 'No Image', 'inspiry-real-estate' );
                 }
@@ -327,8 +323,14 @@ class Inspiry_Property_Post_Type {
                 break;
 
             case 'price':
-                //property_price();
-                echo 'to do';   // todo: property price
+                $property_price = get_post_meta ( $post->ID, 'REAL_HOMES_property_price', true );
+                if ( !empty ( $property_price ) ) {
+                    $price_amount = doubleval( $property_price );
+                    $price_postfix = get_post_meta ( $post->ID, 'REAL_HOMES_property_price_postfix', true );
+                    echo Inspiry_Property::format_price( $price_amount, $price_postfix );
+                } else {
+                    _e ( 'NA', 'inspiry-real-estate' );
+                }
                 break;
 
             default:
