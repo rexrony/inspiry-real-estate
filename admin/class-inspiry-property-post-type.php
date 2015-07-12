@@ -76,7 +76,7 @@ class Inspiry_Property_Post_Type {
         $labels = array(
             'name'                       => _x( 'Property Type', 'Taxonomy General Name', 'inspiry-real-estate' ),
             'singular_name'              => _x( 'Property Type', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
-            'menu_name'                  => __( 'Property Type', 'inspiry-real-estate' ),
+            'menu_name'                  => __( 'Types', 'inspiry-real-estate' ),
             'all_items'                  => __( 'All Property Types', 'inspiry-real-estate' ),
             'parent_item'                => __( 'Parent Property Type', 'inspiry-real-estate' ),
             'parent_item_colon'          => __( 'Parent Property Type:', 'inspiry-real-estate' ),
@@ -123,7 +123,7 @@ class Inspiry_Property_Post_Type {
         $labels = array(
             'name'                       => _x( 'Property Status', 'Taxonomy General Name', 'inspiry-real-estate' ),
             'singular_name'              => _x( 'Property Status', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
-            'menu_name'                  => __( 'Property Status', 'inspiry-real-estate' ),
+            'menu_name'                  => __( 'Statuses', 'inspiry-real-estate' ),
             'all_items'                  => __( 'All Property Statuses', 'inspiry-real-estate' ),
             'parent_item'                => __( 'Parent Property Status', 'inspiry-real-estate' ),
             'parent_item_colon'          => __( 'Parent Property Status:', 'inspiry-real-estate' ),
@@ -170,7 +170,7 @@ class Inspiry_Property_Post_Type {
         $labels = array(
             'name'                       => _x( 'Property City', 'Taxonomy General Name', 'inspiry-real-estate' ),
             'singular_name'              => _x( 'Property City', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
-            'menu_name'                  => __( 'Property City', 'inspiry-real-estate' ),
+            'menu_name'                  => __( 'Locations', 'inspiry-real-estate' ),
             'all_items'                  => __( 'All Property Cities', 'inspiry-real-estate' ),
             'parent_item'                => __( 'Parent Property City', 'inspiry-real-estate' ),
             'parent_item_colon'          => __( 'Parent Property City:', 'inspiry-real-estate' ),
@@ -217,7 +217,7 @@ class Inspiry_Property_Post_Type {
         $labels = array(
             'name'                       => _x( 'Property Features', 'Taxonomy General Name', 'inspiry-real-estate' ),
             'singular_name'              => _x( 'Property Feature', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
-            'menu_name'                  => __( 'Property Feature', 'inspiry-real-estate' ),
+            'menu_name'                  => __( 'Features', 'inspiry-real-estate' ),
             'all_items'                  => __( 'All Property Features', 'inspiry-real-estate' ),
             'parent_item'                => __( 'Parent Property Feature', 'inspiry-real-estate' ),
             'parent_item_colon'          => __( 'Parent Property Feature:', 'inspiry-real-estate' ),
@@ -884,7 +884,7 @@ class Inspiry_Property_Post_Type {
         add_submenu_page(
             'edit.php?post_type=property',
             __( 'Property Payments', 'inspiry' ),
-            __( 'Property Payments', 'inspiry' ),
+            __( 'Payments', 'inspiry' ),
             'manage_options',
             'properties-payments',
             array( $this, 'display_properties_payments' )
