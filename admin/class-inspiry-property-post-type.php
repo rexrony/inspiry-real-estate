@@ -638,4 +638,65 @@ class Inspiry_Property_Post_Type {
 
     }
 
+
+    /*
+     * Property custom ID search support for properties index page on admin side
+     */
+
+    /**
+     * Check if current page is properties index page on admin side
+     * @return bool
+     */
+    public function is_properties_index_page() {
+        global $pagenow;
+        return ( is_admin() && $pagenow == 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'property' && isset($_GET['s']) );
+    }
+
+
+    /**
+     * Joins post meta table with posts table for search purpose
+     * @param $join
+     * @return string
+     */
+    public function join_post_meta_table( $join ) {
+        global $wpdb;
+        if ( $this->is_properties_index_page() ) {
+            $join .= ' LEFT JOIN ' . $wpdb->postmeta . ' ON '. $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
+        }
+        return $join;
+    }
+
+
+    /**
+     * Add property custom id in search
+     *
+     * @param $where
+     * @return mixed
+     */
+    public function add_property_id_in_search( $where ) {
+        global $wpdb;
+        if ( $this->is_properties_index_page() ) {
+            $where = preg_replace(
+                "/\(\s*".$wpdb->posts.".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+                "(".$wpdb->posts.".post_title LIKE $1) OR (".$wpdb->postmeta.".meta_key = 'REAL_HOMES_property_id') AND (".$wpdb->postmeta.".meta_value LIKE $1)",
+                $where );
+        }
+        return $where;
+    }
+
+
+    /**
+     * Add group by properties support
+     * @param $group_by
+     * @return string
+     */
+    function group_by_properties( $group_by ) {
+        global $wpdb;
+        if ( $this->is_properties_index_page() ) {
+            $group_by = "$wpdb->posts.ID";
+        }
+        return $group_by;
+    }
+
+
 }
