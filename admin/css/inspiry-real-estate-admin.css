@@ -98,7 +98,11 @@
 
 }
 
-/* Inspiry Settings Page */
+
+/*
+ * Inspiry Settings Page
+ */
+
 label.inspiry-field-description{
     display: inline-block;
     margin-top: 5px;
@@ -110,4 +114,43 @@ input.decimal_separator,
 input.thousand_separator,
 input.number_of_decimals{
     width: 50px;
+}
+
+/*
+ * Payments table
+ */
+#payments-table {
+    border: 1px solid #dedede;
+    background: #fff;
+    margin: 25px 0;
+    border-collapse: collapse;
+}
+#payments-table th, #payments-table td {
+    border: 1px solid #dedede;
+    text-align: left;
+}
+#payments-table a {
+    text-decoration: none;
+}
+#payments-table a:hover {
+    text-decoration: underline;
+}
+#payments-table .pagination {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+#payments-table .pagination li {
+    display: inline;
+}
+#payments-table .pagination li.active a {
+    font-weight: bold;
+}
+#payments-table .pagination a {
+    display: inline-block;
+    padding: 2px 3px;
+    text-decoration: none;
+}
+#payments-table .pagination a:hover {
+    text-decoration: underline;
 }

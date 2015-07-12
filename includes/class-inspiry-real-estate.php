@@ -222,6 +222,7 @@ class Inspiry_Real_Estate {
         $this->loader->add_action( 'init', $property_post_type, 'register_property_status_taxonomy' );
         $this->loader->add_action( 'init', $property_post_type, 'register_property_city_taxonomy' );
         $this->loader->add_action( 'init', $property_post_type, 'register_property_feature_taxonomy' );
+        $this->loader->add_action( 'admin_menu', $property_post_type, 'register_properties_payments_page' );
         $this->loader->add_filter( 'rwmb_meta_boxes', $property_post_type, 'register_meta_boxes' );
         $this->loader->add_filter( 'add_meta_boxes', $property_post_type, 'add_payment_meta_box' );
         $this->loader->add_filter( 'posts_join', $property_post_type, 'join_post_meta_table' );

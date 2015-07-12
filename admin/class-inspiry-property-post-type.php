@@ -766,4 +766,131 @@ class Inspiry_Property_Post_Type {
     }
 
 
+    /*
+     * Properties payments page with table to show related data
+     ============================================================================= */
+
+    /**
+     * Display properties payments in a table
+     */
+    function display_properties_payments(){
+        ?>
+        <table id="payments-table" cellpadding="10px">
+            <tr>
+                <th><?php _e('Transaction ID','inspiry');?></th>
+                <th><?php _e('Payment Date','inspiry');?></th>
+                <th><?php _e('First Name','inspiry');?></th>
+                <th><?php _e('Last Name','inspiry');?></th>
+                <th><?php _e('Payer Email','inspiry');?></th>
+                <th><?php _e('Payment Status','inspiry');?></th>
+                <th><?php _e('Amount','inspiry');?></th>
+                <th><?php _e('Currency','inspiry');?></th>
+                <th><?php _e('Property ID','inspiry');?></th>
+                <th><?php _e('Property Status','inspiry');?></th>
+                <th><?php _e('Action','inspiry');?></th>
+            </tr>
+            <?php
+            // determine page (based on <_GET>)
+            $page_number = isset($_GET['page_number']) ? ((int) $_GET['page_number']) : 1;
+            $number_of_properties = 20;
+
+            $paid_props_args = array(
+                'post_type' => 'property',
+                'posts_per_page' => $number_of_properties,
+                'paged' => $page_number,
+                'meta_query' => array(
+                    array(
+                        'key' => 'payment_status',
+                        'value' => 'Completed',
+                        'compare' => '='
+                    )
+                )
+            );
+
+            $paid_props_query = new WP_Query( $paid_props_args );
+
+            if( $paid_props_query->have_posts() ){
+                $total_found_posts = $paid_props_query->found_posts;
+                while ( $paid_props_query->have_posts() ) {
+                    $paid_props_query->the_post();
+                    global $post;
+                    $values = get_post_custom( $post->ID );
+                    $not_available  = __('Not Available','inspiry');
+
+                    $txn_id         = isset( $values['txn_id'] ) ? esc_attr( $values['txn_id'][0] ) : $not_available;
+                    $payment_date   = isset( $values['payment_date'] ) ? esc_attr( $values['payment_date'][0] ) : $not_available;
+                    $payer_email    = isset( $values['payer_email'] ) ? esc_attr( $values['payer_email'][0] ) : $not_available;
+                    $first_name     = isset( $values['first_name'] ) ? esc_attr( $values['first_name'][0] ) : $not_available;
+                    $last_name      = isset( $values['last_name'] ) ? esc_attr( $values['last_name'][0] ) : $not_available;
+                    $payment_status = isset( $values['payment_status'] ) ? esc_attr( $values['payment_status'][0] ) : $not_available;
+                    $payment_gross  = isset( $values['payment_gross'] ) ? esc_attr( $values['payment_gross'][0] ) : $not_available;
+                    $payment_currency  = isset( $values['mc_currency'] ) ? esc_attr( $values['mc_currency'][0] ) : $not_available;
+                    ?>
+                    <tr>
+                        <td><?php echo $txn_id; ?></td>
+                        <td><?php echo $payment_date; ?></td>
+                        <td><?php echo $first_name; ?></td>
+                        <td><?php echo $last_name; ?></td>
+                        <td><?php echo $payer_email; ?></td>
+                        <td><?php echo $payment_status; ?></td>
+                        <td><?php echo $payment_gross; ?></td>
+                        <td><?php echo $payment_currency; ?></td>
+                        <td><?php echo $post->ID; ?></td>
+                        <td><?php echo $post->post_status; ?></td>
+                        <td><a href="<?php echo get_edit_post_link( $post->ID ); ?>"><?php _e( 'Edit Property', 'inspiry' ); ?></a></td>
+                    </tr>
+                    <?php
+                }
+
+                if( $total_found_posts > $number_of_properties ){
+                    ?>
+                    <tr>
+                        <td colspan="11">
+                            <?php
+                            require_once plugin_dir_path( __FILE__ ) . 'partials/Pagination.class.php';
+
+                            // instantiate; set current page; set number of records
+                            $pagination = (new Pagination());
+                            $pagination->setCurrent($page_number);
+                            $pagination->setTotal($total_found_posts);
+
+                            // grab rendered/parsed pagination markup
+                            echo $pagination->parse();
+                            ?>
+                        </td>
+                    </tr>
+                    <?php
+                }
+
+                wp_reset_query();
+
+            } else {
+                ?>
+                <tr>
+                    <td colspan="11"><?php _e( 'No Completed Payment Found!', 'inspiry' ); ?></td>
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
+        <?php
+    }
+
+
+    /**
+     * Register properties payments page for admin side
+     */
+    function register_properties_payments_page(){
+        add_submenu_page(
+            'edit.php?post_type=property',
+            __( 'Property Payments', 'inspiry' ),
+            __( 'Property Payments', 'inspiry' ),
+            'manage_options',
+            'properties-payments',
+            array( $this, 'display_properties_payments' )
+        );
+    }
+
+
+
 }
