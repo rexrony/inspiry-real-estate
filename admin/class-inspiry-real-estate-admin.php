@@ -236,7 +236,7 @@ class Inspiry_Real_Estate_Admin {
             array(
                 'field_id'        => 'number_of_decimals',
                 'field_option'    => 'inspiry_price_format_option',
-                'field_default'   => '2',
+                'field_default'   => '0',
             )
         );
 
