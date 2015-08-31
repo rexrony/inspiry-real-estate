@@ -646,7 +646,7 @@ class Inspiry_Property_Post_Type {
      * Add payment meta box
      */
     function add_payment_meta_box() {
-        add_meta_box( 'payment-meta-box', __( 'Payment Information', 'inspiry' ), array( $this, 'display_payment_info' ), 'property', 'normal', 'default' );
+        add_meta_box( 'payment-meta-box', __( 'Payment Information', 'inspiry-real-estate' ), array( $this, 'display_payment_info' ), 'property', 'normal', 'default' );
     }
 
     /**
@@ -656,7 +656,7 @@ class Inspiry_Property_Post_Type {
     function display_payment_info( $post ) {
 
         $values = get_post_custom( $post->ID );
-        $not_available  = __( 'Not Available', 'inspiry' );
+        $not_available  = __( 'Not Available', 'inspiry-real-estate' );
 
         $txn_id             = isset( $values['txn_id'] ) ? esc_attr( $values['txn_id'][0] ) : $not_available;
         $payment_date       = isset( $values['payment_date'] ) ? esc_attr( $values['payment_date'][0] ) : $not_available;
@@ -670,35 +670,35 @@ class Inspiry_Property_Post_Type {
         ?>
         <table style="width:100%;">
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Transaction ID', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Transaction ID', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $txn_id; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Date', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Date', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $payment_date; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'First Name', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'First Name', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $first_name; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Last Name', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Last Name', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $last_name; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payer Email', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payer Email', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $payer_email; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e('Payment Status','inspiry');?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e('Payment Status','inspiry-real-estate');?></strong></td>
                 <td style="width:75%;"><?php echo $payment_status; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Amount', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Amount', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $payment_gross; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Currency', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Currency', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $payment_currency; ?></td>
             </tr>
         </table>
