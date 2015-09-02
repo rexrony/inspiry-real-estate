@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Inspiry Real Estate\n"
-"POT-Creation-Date: 2015-08-03 14:33+0500\n"
-"PO-Revision-Date: 2015-08-03 14:33+0500\n"
+"POT-Creation-Date: 2015-09-02 11:16+0500\n"
+"PO-Revision-Date: 2015-09-02 11:16+0500\n"
 "Last-Translator: M Saqib Sarwar <saqib@inspirythemes.com>\n"
 "Language-Team: M Saqib Sarwar <saqib@inspirythemes.com>\n"
 "Language: en_US\n"
@@ -297,7 +297,6 @@ msgid "New Property"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:30
-#: admin/class-inspiry-property-post-type.php:840
 msgid "Edit Property"
 msgstr ""
 
@@ -713,7 +712,6 @@ msgid "Example Value: 1"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:474
-#: admin/class-inspiry-property-post-type.php:788
 msgid "Property ID"
 msgstr ""
 
@@ -836,37 +834,30 @@ msgid "Payment Information"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:659
-#: admin/class-inspiry-property-post-type.php:818
 msgid "Not Available"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:673
-#: admin/class-inspiry-property-post-type.php:780
 msgid "Transaction ID"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:677
-#: admin/class-inspiry-property-post-type.php:781
 msgid "Payment Date"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:681
-#: admin/class-inspiry-property-post-type.php:782
 msgid "First Name"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:685
-#: admin/class-inspiry-property-post-type.php:783
 msgid "Last Name"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:689
-#: admin/class-inspiry-property-post-type.php:784
 msgid "Payer Email"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:693
-#: admin/class-inspiry-property-post-type.php:785
 msgid "Payment Status"
 msgstr ""
 
@@ -876,34 +867,6 @@ msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:701
 msgid "Payment Currency"
-msgstr ""
-
-#: admin/class-inspiry-property-post-type.php:786
-msgid "Amount"
-msgstr ""
-
-#: admin/class-inspiry-property-post-type.php:787
-msgid "Currency"
-msgstr ""
-
-#: admin/class-inspiry-property-post-type.php:789
-msgid "Property Status"
-msgstr ""
-
-#: admin/class-inspiry-property-post-type.php:790
-msgid "Action"
-msgstr ""
-
-#: admin/class-inspiry-property-post-type.php:870
-msgid "No Completed Payment Found!"
-msgstr ""
-
-#: admin/class-inspiry-property-post-type.php:886
-msgid "Property Payments"
-msgstr ""
-
-#: admin/class-inspiry-property-post-type.php:887
-msgid "Payments"
 msgstr ""
 
 #: admin/class-inspiry-real-estate-admin.php:117
