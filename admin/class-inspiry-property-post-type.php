@@ -46,7 +46,7 @@ class Inspiry_Property_Post_Type {
             'label'               => __( 'property', 'inspiry-real-estate' ),
             'description'         => __( 'Real Estate Property', 'inspiry-real-estate' ),
             'labels'              => $labels,
-            'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'page-attributes', ),
+            'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'page-attributes', 'comments' ),
             'hierarchical'        => true,
             'public'              => true,
             'show_ui'             => true,
