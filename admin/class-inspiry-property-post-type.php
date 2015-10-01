@@ -46,7 +46,7 @@ class Inspiry_Property_Post_Type {
             'label'               => __( 'property', 'inspiry-real-estate' ),
             'description'         => __( 'Real Estate Property', 'inspiry-real-estate' ),
             'labels'              => $labels,
-            'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'page-attributes', ),
+            'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'page-attributes', 'comments' ),
             'hierarchical'        => true,
             'public'              => true,
             'show_ui'             => true,
@@ -76,7 +76,7 @@ class Inspiry_Property_Post_Type {
         $labels = array(
             'name'                       => _x( 'Property Type', 'Taxonomy General Name', 'inspiry-real-estate' ),
             'singular_name'              => _x( 'Property Type', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
-            'menu_name'                  => __( 'Property Type', 'inspiry-real-estate' ),
+            'menu_name'                  => __( 'Types', 'inspiry-real-estate' ),
             'all_items'                  => __( 'All Property Types', 'inspiry-real-estate' ),
             'parent_item'                => __( 'Parent Property Type', 'inspiry-real-estate' ),
             'parent_item_colon'          => __( 'Parent Property Type:', 'inspiry-real-estate' ),
@@ -123,7 +123,7 @@ class Inspiry_Property_Post_Type {
         $labels = array(
             'name'                       => _x( 'Property Status', 'Taxonomy General Name', 'inspiry-real-estate' ),
             'singular_name'              => _x( 'Property Status', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
-            'menu_name'                  => __( 'Property Status', 'inspiry-real-estate' ),
+            'menu_name'                  => __( 'Statuses', 'inspiry-real-estate' ),
             'all_items'                  => __( 'All Property Statuses', 'inspiry-real-estate' ),
             'parent_item'                => __( 'Parent Property Status', 'inspiry-real-estate' ),
             'parent_item_colon'          => __( 'Parent Property Status:', 'inspiry-real-estate' ),
@@ -170,7 +170,7 @@ class Inspiry_Property_Post_Type {
         $labels = array(
             'name'                       => _x( 'Property City', 'Taxonomy General Name', 'inspiry-real-estate' ),
             'singular_name'              => _x( 'Property City', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
-            'menu_name'                  => __( 'Property City', 'inspiry-real-estate' ),
+            'menu_name'                  => __( 'Locations', 'inspiry-real-estate' ),
             'all_items'                  => __( 'All Property Cities', 'inspiry-real-estate' ),
             'parent_item'                => __( 'Parent Property City', 'inspiry-real-estate' ),
             'parent_item_colon'          => __( 'Parent Property City:', 'inspiry-real-estate' ),
@@ -217,7 +217,7 @@ class Inspiry_Property_Post_Type {
         $labels = array(
             'name'                       => _x( 'Property Features', 'Taxonomy General Name', 'inspiry-real-estate' ),
             'singular_name'              => _x( 'Property Feature', 'Taxonomy Singular Name', 'inspiry-real-estate' ),
-            'menu_name'                  => __( 'Property Feature', 'inspiry-real-estate' ),
+            'menu_name'                  => __( 'Features', 'inspiry-real-estate' ),
             'all_items'                  => __( 'All Property Features', 'inspiry-real-estate' ),
             'parent_item'                => __( 'Parent Property Feature', 'inspiry-real-estate' ),
             'parent_item_colon'          => __( 'Parent Property Feature:', 'inspiry-real-estate' ),
@@ -646,7 +646,7 @@ class Inspiry_Property_Post_Type {
      * Add payment meta box
      */
     function add_payment_meta_box() {
-        add_meta_box( 'payment-meta-box', __( 'Payment Information', 'inspiry' ), array( $this, 'display_payment_info' ), 'property', 'normal', 'default' );
+        add_meta_box( 'payment-meta-box', __( 'Payment Information', 'inspiry-real-estate' ), array( $this, 'display_payment_info' ), 'property', 'normal', 'default' );
     }
 
     /**
@@ -656,7 +656,7 @@ class Inspiry_Property_Post_Type {
     function display_payment_info( $post ) {
 
         $values = get_post_custom( $post->ID );
-        $not_available  = __( 'Not Available', 'inspiry' );
+        $not_available  = __( 'Not Available', 'inspiry-real-estate' );
 
         $txn_id             = isset( $values['txn_id'] ) ? esc_attr( $values['txn_id'][0] ) : $not_available;
         $payment_date       = isset( $values['payment_date'] ) ? esc_attr( $values['payment_date'][0] ) : $not_available;
@@ -670,35 +670,35 @@ class Inspiry_Property_Post_Type {
         ?>
         <table style="width:100%;">
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Transaction ID', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Transaction ID', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $txn_id; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Date', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Date', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $payment_date; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'First Name', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'First Name', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $first_name; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Last Name', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Last Name', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $last_name; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payer Email', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payer Email', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $payer_email; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e('Payment Status','inspiry');?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e('Payment Status','inspiry-real-estate');?></strong></td>
                 <td style="width:75%;"><?php echo $payment_status; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Amount', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Amount', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $payment_gross; ?></td>
             </tr>
             <tr>
-                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Currency', 'inspiry' );?></strong></td>
+                <td style="width:25%; vertical-align: top;"><strong><?php _e( 'Payment Currency', 'inspiry-real-estate' );?></strong></td>
                 <td style="width:75%;"><?php echo $payment_currency; ?></td>
             </tr>
         </table>
@@ -764,133 +764,6 @@ class Inspiry_Property_Post_Type {
         }
         return $group_by;
     }
-
-
-    /*
-     * Properties payments page with table to show related data
-     ============================================================================= */
-
-    /**
-     * Display properties payments in a table
-     */
-    function display_properties_payments(){
-        ?>
-        <table id="payments-table" cellpadding="10px">
-            <tr>
-                <th><?php _e('Transaction ID','inspiry');?></th>
-                <th><?php _e('Payment Date','inspiry');?></th>
-                <th><?php _e('First Name','inspiry');?></th>
-                <th><?php _e('Last Name','inspiry');?></th>
-                <th><?php _e('Payer Email','inspiry');?></th>
-                <th><?php _e('Payment Status','inspiry');?></th>
-                <th><?php _e('Amount','inspiry');?></th>
-                <th><?php _e('Currency','inspiry');?></th>
-                <th><?php _e('Property ID','inspiry');?></th>
-                <th><?php _e('Property Status','inspiry');?></th>
-                <th><?php _e('Action','inspiry');?></th>
-            </tr>
-            <?php
-            // determine page (based on <_GET>)
-            $page_number = isset($_GET['page_number']) ? ((int) $_GET['page_number']) : 1;
-            $number_of_properties = 20;
-
-            $paid_props_args = array(
-                'post_type' => 'property',
-                'posts_per_page' => $number_of_properties,
-                'paged' => $page_number,
-                'meta_query' => array(
-                    array(
-                        'key' => 'payment_status',
-                        'value' => 'Completed',
-                        'compare' => '='
-                    )
-                )
-            );
-
-            $paid_props_query = new WP_Query( $paid_props_args );
-
-            if( $paid_props_query->have_posts() ){
-                $total_found_posts = $paid_props_query->found_posts;
-                while ( $paid_props_query->have_posts() ) {
-                    $paid_props_query->the_post();
-                    global $post;
-                    $values = get_post_custom( $post->ID );
-                    $not_available  = __('Not Available','inspiry');
-
-                    $txn_id         = isset( $values['txn_id'] ) ? esc_attr( $values['txn_id'][0] ) : $not_available;
-                    $payment_date   = isset( $values['payment_date'] ) ? esc_attr( $values['payment_date'][0] ) : $not_available;
-                    $payer_email    = isset( $values['payer_email'] ) ? esc_attr( $values['payer_email'][0] ) : $not_available;
-                    $first_name     = isset( $values['first_name'] ) ? esc_attr( $values['first_name'][0] ) : $not_available;
-                    $last_name      = isset( $values['last_name'] ) ? esc_attr( $values['last_name'][0] ) : $not_available;
-                    $payment_status = isset( $values['payment_status'] ) ? esc_attr( $values['payment_status'][0] ) : $not_available;
-                    $payment_gross  = isset( $values['payment_gross'] ) ? esc_attr( $values['payment_gross'][0] ) : $not_available;
-                    $payment_currency  = isset( $values['mc_currency'] ) ? esc_attr( $values['mc_currency'][0] ) : $not_available;
-                    ?>
-                    <tr>
-                        <td><?php echo $txn_id; ?></td>
-                        <td><?php echo $payment_date; ?></td>
-                        <td><?php echo $first_name; ?></td>
-                        <td><?php echo $last_name; ?></td>
-                        <td><?php echo $payer_email; ?></td>
-                        <td><?php echo $payment_status; ?></td>
-                        <td><?php echo $payment_gross; ?></td>
-                        <td><?php echo $payment_currency; ?></td>
-                        <td><?php echo $post->ID; ?></td>
-                        <td><?php echo $post->post_status; ?></td>
-                        <td><a href="<?php echo get_edit_post_link( $post->ID ); ?>"><?php _e( 'Edit Property', 'inspiry' ); ?></a></td>
-                    </tr>
-                    <?php
-                }
-
-                if( $total_found_posts > $number_of_properties ){
-                    ?>
-                    <tr>
-                        <td colspan="11">
-                            <?php
-                            require_once plugin_dir_path( __FILE__ ) . 'partials/Pagination.class.php';
-
-                            // instantiate; set current page; set number of records
-                            $pagination = (new Pagination());
-                            $pagination->setCurrent($page_number);
-                            $pagination->setTotal($total_found_posts);
-
-                            // grab rendered/parsed pagination markup
-                            echo $pagination->parse();
-                            ?>
-                        </td>
-                    </tr>
-                    <?php
-                }
-
-                wp_reset_query();
-
-            } else {
-                ?>
-                <tr>
-                    <td colspan="11"><?php _e( 'No Completed Payment Found!', 'inspiry' ); ?></td>
-                </tr>
-                <?php
-            }
-            ?>
-        </table>
-        <?php
-    }
-
-
-    /**
-     * Register properties payments page for admin side
-     */
-    function register_properties_payments_page(){
-        add_submenu_page(
-            'edit.php?post_type=property',
-            __( 'Property Payments', 'inspiry' ),
-            __( 'Property Payments', 'inspiry' ),
-            'manage_options',
-            'properties-payments',
-            array( $this, 'display_properties_payments' )
-        );
-    }
-
 
 
 }
