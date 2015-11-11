@@ -334,6 +334,20 @@ class Inspiry_Real_Estate_Admin {
             )
         );
 
+        add_settings_field(
+            'agent_url_slug',
+            __( 'Agent', 'inspiry-real-estate' ),
+            array( $this, 'inspiry_text_option_field' ),
+            'inspiry_real_estate_settings_page',
+            'inspiry_url_slugs_section',
+            array(
+                'field_id'          => 'agent_url_slug',
+                'field_option'      => 'inspiry_real_estate_option',
+                'field_default'     => __( 'agent', 'inspiry-real-estate' ),
+                'field_description' => __( 'Default: agent', 'inspiry-real-estate' ),
+            )
+        );
+
         /**
          * Register Settings
          */

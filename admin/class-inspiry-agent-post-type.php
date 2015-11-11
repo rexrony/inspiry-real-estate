@@ -36,7 +36,7 @@ class Inspiry_Agent_Post_Type {
         );
 
         $rewrite = array(
-            'slug'                => __( 'agent', 'inspiry-real-estate'),
+            'slug'                => apply_filters( 'inspiry_agent_slug', __( 'agent', 'inspiry-real-estate' ) ),
             'with_front'          => true,
             'pages'               => true,
             'feeds'               => false,
