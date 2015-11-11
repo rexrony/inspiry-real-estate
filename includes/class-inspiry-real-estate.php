@@ -220,6 +220,7 @@ class Inspiry_Real_Estate {
         $this->loader->add_filter( 'inspiry_property_type_slug', $this, 'modify_property_type_slug' );
         $this->loader->add_filter( 'inspiry_property_status_slug', $this, 'modify_property_status_slug' );
         $this->loader->add_filter( 'inspiry_property_city_slug', $this, 'modify_property_city_slug' );
+        $this->loader->add_filter( 'inspiry_property_feature_slug', $this, 'modify_property_feature_slug' );
 
         // Property Post Type
         $property_post_type = new Inspiry_Property_Post_Type();
@@ -447,6 +448,21 @@ class Inspiry_Real_Estate {
         $property_city_url_slug = $this->get_property_city_url_slug();
         if ( $property_city_url_slug ) {
             return $property_city_url_slug;
+        }
+        return $existing_slug;
+    }
+
+    public function get_property_feature_url_slug() {
+        if( isset( $this->plugin_options[ 'property_feature_url_slug' ] ) ) {
+            return sanitize_title( $this->plugin_options[ 'property_feature_url_slug' ] );
+        }
+        return null;
+    }
+
+    public function modify_property_feature_slug ( $existing_slug ) {
+        $property_feature_url_slug = $this->get_property_feature_url_slug();
+        if ( $property_feature_url_slug ) {
+            return $property_feature_url_slug;
         }
         return $existing_slug;
     }

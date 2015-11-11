@@ -320,6 +320,20 @@ class Inspiry_Real_Estate_Admin {
             )
         );
 
+        add_settings_field(
+            'property_feature_url_slug',
+            __( 'Property Feature', 'inspiry-real-estate' ),
+            array( $this, 'inspiry_text_option_field' ),
+            'inspiry_real_estate_settings_page',
+            'inspiry_url_slugs_section',
+            array(
+                'field_id'          => 'property_feature_url_slug',
+                'field_option'      => 'inspiry_real_estate_option',
+                'field_default'     => __( 'property-feature', 'inspiry-real-estate' ),
+                'field_description' => __( 'Default: property-feature', 'inspiry-real-estate' ),
+            )
+        );
+
         /**
          * Register Settings
          */
