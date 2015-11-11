@@ -71,7 +71,7 @@ class Inspiry_Real_Estate_Admin {
 	 */
 	public function enqueue_styles() {
 
-        if( $this::is_property_edit_page() ) {
+        if ( $this::is_property_edit_page() || ( isset( $_GET['page'] ) && ( $_GET['page'] == 'inspiry_real_estate' ) ) ) {
             wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/inspiry-real-estate-admin.css', array(), $this->version, 'all');
         }
 
@@ -266,7 +266,7 @@ class Inspiry_Real_Estate_Admin {
          */
         add_settings_field(
             'property_url_slug',
-            __( 'Property URL Slug', 'inspiry-real-estate' ),
+            __( 'Property', 'inspiry-real-estate' ),
             array( $this, 'inspiry_text_option_field' ),
             'inspiry_real_estate_settings_page',
             'inspiry_url_slugs_section',
@@ -274,12 +274,13 @@ class Inspiry_Real_Estate_Admin {
                 'field_id'          => 'property_url_slug',
                 'field_option'      => 'inspiry_real_estate_option',
                 'field_default'     => __( 'property', 'inspiry-real-estate' ),
+                'field_description' => __( 'Default: property', 'inspiry-real-estate' ),
             )
         );
 
         add_settings_field(
             'property_type_url_slug',
-            __( 'Property Type URL Slug', 'inspiry-real-estate' ),
+            __( 'Property Type', 'inspiry-real-estate' ),
             array( $this, 'inspiry_text_option_field' ),
             'inspiry_real_estate_settings_page',
             'inspiry_url_slugs_section',
@@ -287,12 +288,13 @@ class Inspiry_Real_Estate_Admin {
                 'field_id'          => 'property_type_url_slug',
                 'field_option'      => 'inspiry_real_estate_option',
                 'field_default'     => __( 'property-type', 'inspiry-real-estate' ),
+                'field_description' => __( 'Default: property-type', 'inspiry-real-estate' ),
             )
         );
 
         add_settings_field(
             'property_status_url_slug',
-            __( 'Property Status URL Slug', 'inspiry-real-estate' ),
+            __( 'Property Status', 'inspiry-real-estate' ),
             array( $this, 'inspiry_text_option_field' ),
             'inspiry_real_estate_settings_page',
             'inspiry_url_slugs_section',
@@ -300,6 +302,7 @@ class Inspiry_Real_Estate_Admin {
                 'field_id'          => 'property_status_url_slug',
                 'field_option'      => 'inspiry_real_estate_option',
                 'field_default'     => __( 'property-status', 'inspiry-real-estate' ),
+                'field_description' => __( 'Default: property-status', 'inspiry-real-estate' ),
             )
         );
 
