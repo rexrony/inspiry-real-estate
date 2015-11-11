@@ -36,7 +36,7 @@ class Inspiry_Property_Post_Type {
         );
 
         $rewrite = array(
-            'slug'                => __( 'property', 'inspiry-real-estate' ),
+            'slug'                => apply_filters( 'inspiry_property_slug', __( 'property', 'inspiry-real-estate' ) ),
             'with_front'          => true,
             'pages'               => true,
             'feeds'               => true,
@@ -94,7 +94,7 @@ class Inspiry_Property_Post_Type {
         );
 
         $rewrite = array(
-            'slug'                       => __( 'property-type', 'inspiry-real-estate' ),
+            'slug'                       => apply_filters( 'inspiry_property_type_slug', __( 'property-type', 'inspiry-real-estate' ) ),
             'with_front'                 => true,
             'hierarchical'               => true,
         );
@@ -141,7 +141,7 @@ class Inspiry_Property_Post_Type {
         );
 
         $rewrite = array(
-            'slug'                       => __( 'property-status', 'inspiry-real-estate' ),
+            'slug'                       => apply_filters( 'inspiry_property_status_slug', __( 'property-status', 'inspiry-real-estate' ) ),
             'with_front'                 => true,
             'hierarchical'               => true,
         );

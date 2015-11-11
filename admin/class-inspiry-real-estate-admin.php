@@ -60,7 +60,7 @@ class Inspiry_Real_Estate_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-        $this->options = get_option( 'inspiry_price_format_option' );
+        $this->options = get_option( 'inspiry_real_estate_option' );
 
 	}
 
@@ -140,7 +140,7 @@ class Inspiry_Real_Estate_Admin {
             <!-- Create the form that will be used to render our options -->
             <form method="post" action="options.php">
                 <?php settings_fields( 'inspiry_real_estate_options_group' ); ?>
-                <?php do_settings_sections( 'inspiry_price_format_page' ); ?>
+                <?php do_settings_sections( 'inspiry_real_estate_settings_page' ); ?>
                 <?php submit_button(); ?>
             </form>
 
@@ -155,7 +155,7 @@ class Inspiry_Real_Estate_Admin {
 
         // create plugin options if not exist
         if( false == $this->options ) {
-            add_option( 'inspiry_price_format_option' );
+            add_option( 'inspiry_real_estate_option' );
         }
 
         /**
@@ -165,21 +165,28 @@ class Inspiry_Real_Estate_Admin {
             'inspiry_price_format_section',                                                 // ID used to identify this section and with which to register options
             __( 'Price Format', 'inspiry-real-estate'),                                     // Title to be displayed on the administration page
             array( $this, 'inspiry_price_format_settings_description'),                     // Callback used to render the description of the section
-            'inspiry_price_format_page'                                                     // Page on which to add this section of options
+            'inspiry_real_estate_settings_page'                                                     // Page on which to add this section of options
+        );
+
+        add_settings_section(
+            'inspiry_url_slugs_section',                                                 // ID used to identify this section and with which to register options
+            __( 'URL Slugs', 'inspiry-real-estate'),                                     // Title to be displayed on the administration page
+            array( $this, 'inspiry_url_slugs_settings_description'),                     // Callback used to render the description of the section
+            'inspiry_real_estate_settings_page'                                                  // Page on which to add this section of options
         );
 
         /**
-         * Fields
+         * Price Format Fields
          */
         add_settings_field(
             'currency_sign',
             __( 'Currency Sign', 'inspiry-real-estate' ),
             array( $this, 'inspiry_text_option_field' ),
-            'inspiry_price_format_page',
+            'inspiry_real_estate_settings_page',
             'inspiry_price_format_section',
             array(
                 'field_id'        => 'currency_sign',
-                'field_option'    => 'inspiry_price_format_option',
+                'field_option'    => 'inspiry_real_estate_option',
                 'field_default'   => '$',
             )
         );
@@ -188,11 +195,11 @@ class Inspiry_Real_Estate_Admin {
             'currency_position',
             __( 'Currency Sign Position', 'inspiry-real-estate' ),
             array( $this, 'inspiry_select_option_field' ),
-            'inspiry_price_format_page',
+            'inspiry_real_estate_settings_page',
             'inspiry_price_format_section',
             array (
                 'field_id'          => 'currency_position',
-                'field_option'      => 'inspiry_price_format_option',
+                'field_option'      => 'inspiry_real_estate_option',
                 'field_default'     => 'before',
                 'field_options'     => array(
                     'before'   => __( 'Before ($450,000)', 'inspiry-real-estate' ),
@@ -205,11 +212,11 @@ class Inspiry_Real_Estate_Admin {
             'thousand_separator',
             __( 'Thousand Separator', 'inspiry-real-estate' ),
             array( $this, 'inspiry_text_option_field' ),
-            'inspiry_price_format_page',
+            'inspiry_real_estate_settings_page',
             'inspiry_price_format_section',
             array(
                 'field_id'        => 'thousand_separator',
-                'field_option'    => 'inspiry_price_format_option',
+                'field_option'    => 'inspiry_real_estate_option',
                 'field_default'   => ',',
             )
         );
@@ -218,11 +225,11 @@ class Inspiry_Real_Estate_Admin {
             'decimal_separator',
             __( 'Decimal Separator', 'inspiry-real-estate' ),
             array( $this, 'inspiry_text_option_field' ),
-            'inspiry_price_format_page',
+            'inspiry_real_estate_settings_page',
             'inspiry_price_format_section',
             array(
                 'field_id'        => 'decimal_separator',
-                'field_option'    => 'inspiry_price_format_option',
+                'field_option'    => 'inspiry_real_estate_option',
                 'field_default'   => '.',
             )
         );
@@ -231,11 +238,11 @@ class Inspiry_Real_Estate_Admin {
             'number_of_decimals',
             __( 'Number of Decimals', 'inspiry-real-estate' ),
             array( $this, 'inspiry_text_option_field' ),
-            'inspiry_price_format_page',
+            'inspiry_real_estate_settings_page',
             'inspiry_price_format_section',
             array(
                 'field_id'        => 'number_of_decimals',
-                'field_option'    => 'inspiry_price_format_option',
+                'field_option'    => 'inspiry_real_estate_option',
                 'field_default'   => '0',
             )
         );
@@ -244,28 +251,77 @@ class Inspiry_Real_Estate_Admin {
             'empty_price_text',
             __( 'Empty Price Text', 'inspiry-real-estate' ),
             array( $this, 'inspiry_text_option_field' ),
-            'inspiry_price_format_page',
+            'inspiry_real_estate_settings_page',
             'inspiry_price_format_section',
             array(
                 'field_id'          => 'empty_price_text',
-                'field_option'      => 'inspiry_price_format_option',
+                'field_option'      => 'inspiry_real_estate_option',
                 'field_default'     => __( 'Price on call', 'inspiry-real-estate' ),
                 'field_description' => __( 'Text to display in case of empty price. Example: Price on call', 'inspiry-real-estate' ),
             )
         );
 
+        /*
+         * URL Slugs Fields
+         */
+        add_settings_field(
+            'property_url_slug',
+            __( 'Property URL Slug', 'inspiry-real-estate' ),
+            array( $this, 'inspiry_text_option_field' ),
+            'inspiry_real_estate_settings_page',
+            'inspiry_url_slugs_section',
+            array(
+                'field_id'          => 'property_url_slug',
+                'field_option'      => 'inspiry_real_estate_option',
+                'field_default'     => __( 'property', 'inspiry-real-estate' ),
+            )
+        );
+
+        add_settings_field(
+            'property_type_url_slug',
+            __( 'Property Type URL Slug', 'inspiry-real-estate' ),
+            array( $this, 'inspiry_text_option_field' ),
+            'inspiry_real_estate_settings_page',
+            'inspiry_url_slugs_section',
+            array(
+                'field_id'          => 'property_type_url_slug',
+                'field_option'      => 'inspiry_real_estate_option',
+                'field_default'     => __( 'property-type', 'inspiry-real-estate' ),
+            )
+        );
+
+        add_settings_field(
+            'property_status_url_slug',
+            __( 'Property Status URL Slug', 'inspiry-real-estate' ),
+            array( $this, 'inspiry_text_option_field' ),
+            'inspiry_real_estate_settings_page',
+            'inspiry_url_slugs_section',
+            array(
+                'field_id'          => 'property_status_url_slug',
+                'field_option'      => 'inspiry_real_estate_option',
+                'field_default'     => __( 'property-status', 'inspiry-real-estate' ),
+            )
+        );
 
         /**
          * Register Settings
          */
-        register_setting( 'inspiry_real_estate_options_group', 'inspiry_price_format_option' );
+        register_setting( 'inspiry_real_estate_options_group', 'inspiry_real_estate_option' );
+
     }
 
     /**
      * Price format section description
      */
     public function inspiry_price_format_settings_description() {
-        echo '<p>'. __( 'You can modify price format to suit your needs, Using options provided below.', 'inspiry-real-estate' ) . '</p>';
+        echo '<p>'. __( 'Using options provided below, You can modify price format to match your needs.', 'inspiry-real-estate' ) . '</p>';
+    }
+
+    /**
+     * URL slugs section description
+     */
+    public function inspiry_url_slugs_settings_description() {
+        echo '<p>'. __( 'You can modify URL slugs to match your needs. Just make sure to re-save permalinks settings after every change to avoid 404 errors. You can do that from Settings > Permalinks .', 'inspiry-real-estate' ) . '</p>';
     }
 
 

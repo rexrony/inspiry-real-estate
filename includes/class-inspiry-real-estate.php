@@ -96,7 +96,7 @@ class Inspiry_Real_Estate {
 
 		$this->plugin_name = 'inspiry-real-estate';
 		$this->version = '1.0.0';
-        $this->plugin_options = get_option( 'inspiry_price_format_option' );
+        $this->plugin_options = get_option( 'inspiry_real_estate_option' );
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -214,6 +214,11 @@ class Inspiry_Real_Estate {
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_real_estate_settings' );
         $this->loader->add_action( 'admin_init', $plugin_admin, 'initialize_real_estate_options' );
         $this->loader->add_filter( 'plugin_action_links_' . INSPIRY_REAL_ESTATE_PLUGIN_BASENAME, $plugin_admin, 'inspiry_real_estate_action_links' );
+
+        // Filters to modify slugs
+        $this->loader->add_filter( 'inspiry_property_slug', $this, 'modify_property_slug' );
+        $this->loader->add_filter( 'inspiry_property_type_slug', $this, 'modify_property_type_slug' );
+        $this->loader->add_filter( 'inspiry_property_status_slug', $this, 'modify_property_status_slug' );
 
         // Property Post Type
         $property_post_type = new Inspiry_Property_Post_Type();
@@ -385,10 +390,55 @@ class Inspiry_Real_Estate {
         return null;
     }
 
+    public function get_property_url_slug() {
+        if( isset( $this->plugin_options[ 'property_url_slug' ] ) ) {
+            return sanitize_title( $this->plugin_options[ 'property_url_slug' ] );
+        }
+        return null;
+    }
+
+    public function modify_property_slug ( $existing_slug ) {
+        $property_url_slug = $this->get_property_url_slug();
+        if ( $property_url_slug ) {
+            return $property_url_slug;
+        }
+        return $existing_slug;
+    }
+
+    public function get_property_type_url_slug() {
+        if( isset( $this->plugin_options[ 'property_type_url_slug' ] ) ) {
+            return sanitize_title( $this->plugin_options[ 'property_type_url_slug' ] );
+        }
+        return null;
+    }
+
+    public function modify_property_type_slug ( $existing_slug ) {
+        $property_type_url_slug = $this->get_property_type_url_slug();
+        if ( $property_type_url_slug ) {
+            return $property_type_url_slug;
+        }
+        return $existing_slug;
+    }
+
+    public function get_property_status_url_slug() {
+        if( isset( $this->plugin_options[ 'property_status_url_slug' ] ) ) {
+            return sanitize_title( $this->plugin_options[ 'property_status_url_slug' ] );
+        }
+        return null;
+    }
+
+    public function modify_property_status_slug ( $existing_slug ) {
+        $property_status_url_slug = $this->get_property_status_url_slug();
+        if ( $property_status_url_slug ) {
+            return $property_status_url_slug;
+        }
+        return $existing_slug;
+    }
+
     private function refresh(){
         if ( function_exists( 'icl_object_id' ) ) {
             // re-read only for wpml
-            $this->plugin_options = get_option( 'inspiry_price_format_option' );
+            $this->plugin_options = get_option( 'inspiry_real_estate_option' );
         }
     }
 

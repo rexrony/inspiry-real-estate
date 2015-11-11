@@ -53,7 +53,7 @@
     </custom-fields>
 
     <admin-texts>
-        <key name="inspiry_price_format_option">
+        <key name="inspiry_real_estate_option">
             <key name="currency_sign" />
             <key name="currency_position" />
             <key name="thousand_separator" />
