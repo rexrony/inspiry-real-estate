@@ -188,7 +188,7 @@ class Inspiry_Property_Post_Type {
         );
 
         $rewrite = array(
-            'slug'                       => __( 'property-city', 'inspiry-real-estate' ),
+            'slug'                       => apply_filters( 'inspiry_property_city_slug', __( 'property-city', 'inspiry-real-estate' ) ),
             'with_front'                 => true,
             'hierarchical'               => true,
         );

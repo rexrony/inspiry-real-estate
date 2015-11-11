@@ -95,7 +95,7 @@ class Inspiry_Real_Estate {
 	private function __construct() {
 
 		$this->plugin_name = 'inspiry-real-estate';
-		$this->version = '1.0.0';
+		$this->version = '1.1.0';
         $this->plugin_options = get_option( 'inspiry_real_estate_option' );
 
 		$this->load_dependencies();
@@ -215,10 +215,11 @@ class Inspiry_Real_Estate {
         $this->loader->add_action( 'admin_init', $plugin_admin, 'initialize_real_estate_options' );
         $this->loader->add_filter( 'plugin_action_links_' . INSPIRY_REAL_ESTATE_PLUGIN_BASENAME, $plugin_admin, 'inspiry_real_estate_action_links' );
 
-        // Filters to modify slugs
+        // Filters to modify URL slugs
         $this->loader->add_filter( 'inspiry_property_slug', $this, 'modify_property_slug' );
         $this->loader->add_filter( 'inspiry_property_type_slug', $this, 'modify_property_type_slug' );
         $this->loader->add_filter( 'inspiry_property_status_slug', $this, 'modify_property_status_slug' );
+        $this->loader->add_filter( 'inspiry_property_city_slug', $this, 'modify_property_city_slug' );
 
         // Property Post Type
         $property_post_type = new Inspiry_Property_Post_Type();
@@ -431,6 +432,21 @@ class Inspiry_Real_Estate {
         $property_status_url_slug = $this->get_property_status_url_slug();
         if ( $property_status_url_slug ) {
             return $property_status_url_slug;
+        }
+        return $existing_slug;
+    }
+
+    public function get_property_city_url_slug() {
+        if( isset( $this->plugin_options[ 'property_city_url_slug' ] ) ) {
+            return sanitize_title( $this->plugin_options[ 'property_city_url_slug' ] );
+        }
+        return null;
+    }
+
+    public function modify_property_city_slug ( $existing_slug ) {
+        $property_city_url_slug = $this->get_property_city_url_slug();
+        if ( $property_city_url_slug ) {
+            return $property_city_url_slug;
         }
         return $existing_slug;
     }
