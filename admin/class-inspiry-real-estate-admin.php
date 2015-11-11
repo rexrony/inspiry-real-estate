@@ -366,7 +366,8 @@ class Inspiry_Real_Estate_Admin {
      * URL slugs section description
      */
     public function inspiry_url_slugs_settings_description() {
-        echo '<p>'. __( 'You can modify URL slugs to match your needs. Just make sure to re-save permalinks settings after every change to avoid 404 errors. You can do that from Settings > Permalinks .', 'inspiry-real-estate' ) . '</p>';
+        echo '<p>'. __( 'You can modify URL slugs to match your needs.', 'inspiry-real-estate' ) . '</p>';
+        echo '<p><strong>'. __( 'Just make sure to re-save permalinks settings after every change to avoid 404 errors. You can do that from Settings > Permalinks .', 'inspiry-real-estate' ) . '</strong></p>';
     }
 
 
