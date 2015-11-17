@@ -58,11 +58,18 @@ class Inspiry_Real_Estate {
 	protected $version;
 
     /**
-     * Contains plugin options value
+     * Contains plugin price format options value
      *
-     * @var mixed|void $plugin_options  Contains plugin options value.
+     * @var mixed|void $price_format_options  Contains price format options value.
      */
-    protected $plugin_options;
+    protected $price_format_options;
+
+    /**
+     * Contains plugin url slugs options value
+     *
+     * @var mixed|void $url_slugs_options  Contains url slugs options value.
+     */
+    protected $url_slugs_options;
 
     /**
      * Instance variable for singleton pattern
@@ -96,7 +103,9 @@ class Inspiry_Real_Estate {
 
 		$this->plugin_name = 'inspiry-real-estate';
 		$this->version = '1.1.0';
-        $this->plugin_options = get_option( 'inspiry_real_estate_option' );
+
+        $this->price_format_options =  get_option( 'inspiry_price_format_option' );
+        $this->url_slugs_options = get_option( 'inspiry_url_slugs_option' );
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -212,7 +221,8 @@ class Inspiry_Real_Estate {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_real_estate_settings' );
-        $this->loader->add_action( 'admin_init', $plugin_admin, 'initialize_real_estate_options' );
+        $this->loader->add_action( 'admin_init', $plugin_admin, 'initialize_price_format_options' );
+        $this->loader->add_action( 'admin_init', $plugin_admin, 'initialize_url_slugs_options' );
         $this->loader->add_filter( 'plugin_action_links_' . INSPIRY_REAL_ESTATE_PLUGIN_BASENAME, $plugin_admin, 'inspiry_real_estate_action_links' );
 
         // Filters to modify URL slugs
@@ -351,51 +361,51 @@ class Inspiry_Real_Estate {
 
     public function get_currency_sign() {
         $this->refresh();
-        if( isset( $this->plugin_options[ 'currency_sign' ] ) ) {
-            return $this->plugin_options[ 'currency_sign' ];
+        if( isset( $this->price_format_options[ 'currency_sign' ] ) ) {
+            return $this->price_format_options[ 'currency_sign' ];
         }
         return '$';
     }
 
     public function get_currency_position() {
-        if( isset( $this->plugin_options[ 'currency_position' ] ) ) {
-            return $this->plugin_options[ 'currency_position' ];
+        if( isset( $this->price_format_options[ 'currency_position' ] ) ) {
+            return $this->price_format_options[ 'currency_position' ];
         }
         return 'before';
     }
 
     public function get_thousand_separator() {
-        if( isset( $this->plugin_options[ 'thousand_separator' ] ) ) {
-            return $this->plugin_options[ 'thousand_separator' ];
+        if( isset( $this->price_format_options[ 'thousand_separator' ] ) ) {
+            return $this->price_format_options[ 'thousand_separator' ];
         }
         return ',';
     }
 
     public function get_decimal_separator() {
-        if( isset( $this->plugin_options[ 'decimal_separator' ] ) ) {
-            return $this->plugin_options[ 'decimal_separator' ];
+        if( isset( $this->price_format_options[ 'decimal_separator' ] ) ) {
+            return $this->price_format_options[ 'decimal_separator' ];
         }
         return '.';
     }
 
     public function get_number_of_decimals() {
-        if( isset( $this->plugin_options[ 'number_of_decimals' ] ) ) {
-            return intval( $this->plugin_options[ 'number_of_decimals' ] );
+        if( isset( $this->price_format_options[ 'number_of_decimals' ] ) ) {
+            return intval( $this->price_format_options[ 'number_of_decimals' ] );
         }
         return 2;
     }
 
     public function get_empty_price_text() {
         $this->refresh();
-        if( isset( $this->plugin_options[ 'empty_price_text' ] ) ) {
-            return $this->plugin_options[ 'empty_price_text' ];
+        if( isset( $this->price_format_options[ 'empty_price_text' ] ) ) {
+            return $this->price_format_options[ 'empty_price_text' ];
         }
         return null;
     }
 
     public function get_property_url_slug() {
-        if( isset( $this->plugin_options[ 'property_url_slug' ] ) ) {
-            return sanitize_title( $this->plugin_options[ 'property_url_slug' ] );
+        if( isset( $this->url_slugs_options[ 'property_url_slug' ] ) ) {
+            return sanitize_title( $this->url_slugs_options[ 'property_url_slug' ] );
         }
         return null;
     }
@@ -409,8 +419,8 @@ class Inspiry_Real_Estate {
     }
 
     public function get_property_type_url_slug() {
-        if( isset( $this->plugin_options[ 'property_type_url_slug' ] ) ) {
-            return sanitize_title( $this->plugin_options[ 'property_type_url_slug' ] );
+        if( isset( $this->url_slugs_options[ 'property_type_url_slug' ] ) ) {
+            return sanitize_title( $this->url_slugs_options[ 'property_type_url_slug' ] );
         }
         return null;
     }
@@ -424,8 +434,8 @@ class Inspiry_Real_Estate {
     }
 
     public function get_property_status_url_slug() {
-        if( isset( $this->plugin_options[ 'property_status_url_slug' ] ) ) {
-            return sanitize_title( $this->plugin_options[ 'property_status_url_slug' ] );
+        if( isset( $this->url_slugs_options[ 'property_status_url_slug' ] ) ) {
+            return sanitize_title( $this->url_slugs_options[ 'property_status_url_slug' ] );
         }
         return null;
     }
@@ -439,8 +449,8 @@ class Inspiry_Real_Estate {
     }
 
     public function get_property_city_url_slug() {
-        if( isset( $this->plugin_options[ 'property_city_url_slug' ] ) ) {
-            return sanitize_title( $this->plugin_options[ 'property_city_url_slug' ] );
+        if( isset( $this->url_slugs_options[ 'property_city_url_slug' ] ) ) {
+            return sanitize_title( $this->url_slugs_options[ 'property_city_url_slug' ] );
         }
         return null;
     }
@@ -454,8 +464,8 @@ class Inspiry_Real_Estate {
     }
 
     public function get_property_feature_url_slug() {
-        if( isset( $this->plugin_options[ 'property_feature_url_slug' ] ) ) {
-            return sanitize_title( $this->plugin_options[ 'property_feature_url_slug' ] );
+        if( isset( $this->url_slugs_options[ 'property_feature_url_slug' ] ) ) {
+            return sanitize_title( $this->url_slugs_options[ 'property_feature_url_slug' ] );
         }
         return null;
     }
@@ -469,8 +479,8 @@ class Inspiry_Real_Estate {
     }
 
     public function get_agent_url_slug() {
-        if( isset( $this->plugin_options[ 'agent_url_slug' ] ) ) {
-            return sanitize_title( $this->plugin_options[ 'agent_url_slug' ] );
+        if( isset( $this->url_slugs_options[ 'agent_url_slug' ] ) ) {
+            return sanitize_title( $this->url_slugs_options[ 'agent_url_slug' ] );
         }
         return null;
     }
@@ -486,7 +496,9 @@ class Inspiry_Real_Estate {
     private function refresh(){
         if ( function_exists( 'icl_object_id' ) ) {
             // re-read only for wpml
-            $this->plugin_options = get_option( 'inspiry_real_estate_option' );
+            $this->price_format_options =  get_option( 'inspiry_price_format_option' );
+            $this->url_slugs_options = get_option( 'inspiry_url_slugs_option' );
+
         }
     }
 
