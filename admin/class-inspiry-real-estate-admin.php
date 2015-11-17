@@ -119,13 +119,14 @@ class Inspiry_Real_Estate_Admin {
      */
     public function add_real_estate_settings(){
 
-        add_object_page(
+        add_menu_page(
             __( 'Inspiry Real Estate Settings', 'inspiry-real-estate'),	// The value used to populate the browser's title bar when the menu page is active
             __( 'Real Estate', 'inspiry-real-estate'),					// The text of the menu in the administrator's sidebar
             'administrator',					                        // What roles are able to access the menu
             'inspiry_real_estate',				                        // The ID used to bind submenu items to this menu
             array( $this, 'display_real_estate_settings'),			    // The callback function used to render this menu
-            'dashicons-admin-multisite'
+            'dashicons-admin-multisite',
+            '25.786'
         );
 
         add_submenu_page(
