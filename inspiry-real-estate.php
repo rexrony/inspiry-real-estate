@@ -70,6 +70,13 @@ add_action( 'init', function() {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if ( is_plugin_active( 'meta-box/meta-box.php' ) ) {
 		deactivate_plugins( 'meta-box/meta-box.php' );
+		add_action( 'admin_notices', function () {
+			?>
+			<div class="update-nag notice is-dismissible">
+				<p><?php _e( 'Meta Box plugin has been deactivated, As now it is embedded in Inspiry Real Estate plugin and no longer required separately. You should completely remove it from plugins.', 'inspiry' ); ?></p>
+			</div>
+			<?php
+		} );
 	}
 } );
 
@@ -96,4 +103,3 @@ if ( !class_exists( 'RWMB_Show_Hide' ) ) {
 if ( !class_exists( 'RWMB_Tabs' ) ) {
 	require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-tabs/meta-box-tabs.php' );               // tabs
 }
-
