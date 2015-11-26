@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Inspiry Real Estate\n"
-"POT-Creation-Date: 2015-09-02 11:16+0500\n"
-"PO-Revision-Date: 2015-09-02 11:18+0500\n"
+"POT-Creation-Date: 2015-11-26 19:11+0500\n"
+"PO-Revision-Date: 2015-11-26 19:13+0500\n"
 "Last-Translator: M Saqib Sarwar <saqib@inspirythemes.com>\n"
 "Language-Team: M Saqib Sarwar <saqib@inspirythemes.com>\n"
 "Language: en_US\n"
@@ -18,6 +18,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: plugins\n"
+"X-Poedit-SearchPathExcluded-2: meta-box-extensions\n"
+"X-Poedit-SearchPathExcluded-3: reCAPTCHA\n"
+"X-Poedit-SearchPathExcluded-4: languages\n"
 
 #: admin/class-inspiry-additional-details-meta-box.php:46
 msgid "Additional Details"
@@ -47,6 +51,7 @@ msgstr ""
 
 #: admin/class-inspiry-agent-post-type.php:24
 #: admin/class-inspiry-property-post-type.php:556
+#: admin/class-inspiry-real-estate-admin.php:421
 msgid "Agent"
 msgstr ""
 
@@ -102,6 +107,7 @@ msgstr ""
 
 #: admin/class-inspiry-agent-post-type.php:39
 #: admin/class-inspiry-agent-post-type.php:46
+#: admin/class-inspiry-real-estate-admin.php:428
 msgid "agent"
 msgstr ""
 
@@ -277,6 +283,7 @@ msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:24
 #: admin/class-inspiry-property-post-type.php:373
+#: admin/class-inspiry-real-estate-admin.php:351
 msgid "Property"
 msgstr ""
 
@@ -314,6 +321,7 @@ msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:39
 #: admin/class-inspiry-property-post-type.php:46
+#: admin/class-inspiry-real-estate-admin.php:358
 msgid "property"
 msgstr ""
 
@@ -398,6 +406,7 @@ msgid "Not Found"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:97
+#: admin/class-inspiry-real-estate-admin.php:372
 msgid "property-type"
 msgstr ""
 
@@ -464,6 +473,7 @@ msgid "Search Property Statuses"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:144
+#: admin/class-inspiry-real-estate-admin.php:386
 msgid "property-status"
 msgstr ""
 
@@ -530,6 +540,7 @@ msgid "Search Property Cities"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:191
+#: admin/class-inspiry-real-estate-admin.php:400
 msgid "property-city"
 msgstr ""
 
@@ -596,6 +607,7 @@ msgid "Search Property Features"
 msgstr ""
 
 #: admin/class-inspiry-property-post-type.php:238
+#: admin/class-inspiry-real-estate-admin.php:414
 msgid "property-feature"
 msgstr ""
 
@@ -869,69 +881,148 @@ msgstr ""
 msgid "Payment Currency"
 msgstr ""
 
-#: admin/class-inspiry-real-estate-admin.php:117
-#: admin/class-inspiry-real-estate-admin.php:135
+#: admin/class-inspiry-real-estate-admin.php:123
+#: admin/class-inspiry-real-estate-admin.php:166
 msgid "Inspiry Real Estate Settings"
 msgstr ""
 
-#: admin/class-inspiry-real-estate-admin.php:118
-msgid "Inspiry Real Estate"
+#: admin/class-inspiry-real-estate-admin.php:124
+msgid "Real Estate"
 msgstr ""
 
-#: admin/class-inspiry-real-estate-admin.php:166
+#: admin/class-inspiry-real-estate-admin.php:134
+#: admin/class-inspiry-real-estate-admin.php:135
+#: admin/class-inspiry-real-estate-admin.php:183
+#: admin/class-inspiry-real-estate-admin.php:341
+msgid "URL Slugs"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:182
+#: admin/class-inspiry-real-estate-admin.php:226
 msgid "Price Format"
 msgstr ""
 
-#: admin/class-inspiry-real-estate-admin.php:176
+#: admin/class-inspiry-real-estate-admin.php:236
 msgid "Currency Sign"
 msgstr ""
 
-#: admin/class-inspiry-real-estate-admin.php:189
+#: admin/class-inspiry-real-estate-admin.php:244
+msgid "Default: $"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:250
 msgid "Currency Sign Position"
 msgstr ""
 
-#: admin/class-inspiry-real-estate-admin.php:198
+#: admin/class-inspiry-real-estate-admin.php:259
 msgid "Before ($450,000)"
 msgstr ""
 
-#: admin/class-inspiry-real-estate-admin.php:199
+#: admin/class-inspiry-real-estate-admin.php:260
 msgid "After (450,000$)"
 msgstr ""
 
-#: admin/class-inspiry-real-estate-admin.php:206
-msgid "Thousand Separator"
-msgstr ""
-
-#: admin/class-inspiry-real-estate-admin.php:219
-msgid "Decimal Separator"
-msgstr ""
-
-#: admin/class-inspiry-real-estate-admin.php:232
-msgid "Number of Decimals"
-msgstr ""
-
-#: admin/class-inspiry-real-estate-admin.php:245
-msgid "Empty Price Text"
-msgstr ""
-
-#: admin/class-inspiry-real-estate-admin.php:252
-msgid "Price on call"
-msgstr ""
-
-#: admin/class-inspiry-real-estate-admin.php:253
-msgid "Text to display in case of empty price. Example: Price on call"
+#: admin/class-inspiry-real-estate-admin.php:262
+msgid "Default: Before"
 msgstr ""
 
 #: admin/class-inspiry-real-estate-admin.php:268
-msgid ""
-"You can modify price format to suit your needs, Using options provided below."
+msgid "Thousand Separator"
 msgstr ""
 
-#: admin/class-inspiry-real-estate-admin.php:286
-#: admin/class-inspiry-real-estate-admin.php:311
+#: admin/class-inspiry-real-estate-admin.php:276
+msgid "Default: ,"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:282
+msgid "Decimal Separator"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:290
+msgid "Default: ."
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:296
+msgid "Number of Decimals"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:304
+msgid "Default: 0"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:310
+msgid "Empty Price Text"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:317
+msgid "Price on call"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:318
+msgid "Text to display in case of empty price. Example: Price on call"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:359
+msgid "Default: property"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:365
+msgid "Property Type"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:373
+msgid "Default: property-type"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:379
+msgid "Property Status"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:387
+msgid "Default: property-status"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:393
+msgid "Property City"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:401
+msgid "Default: property-city"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:407
+msgid "Property Feature"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:415
+msgid "Default: property-feature"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:429
+msgid "Default: agent"
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:444
+msgid ""
+"Using options provided below, You can modify price format to match your "
+"needs."
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:451
+msgid "You can modify URL slugs to match your needs."
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:452
+msgid ""
+"Just make sure to re-save permalinks settings after every change to avoid "
+"404 errors. You can do that from Settings > Permalinks ."
+msgstr ""
+
+#: admin/class-inspiry-real-estate-admin.php:478
+#: admin/class-inspiry-real-estate-admin.php:510
 msgid "Field id is missing!"
 msgstr ""
 
-#: admin/class-inspiry-real-estate-admin.php:322
+#: admin/class-inspiry-real-estate-admin.php:521
 msgid "Settings"
 msgstr ""
