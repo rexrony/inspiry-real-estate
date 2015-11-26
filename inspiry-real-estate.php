@@ -73,7 +73,9 @@ add_action( 'init', function() {
 		add_action( 'admin_notices', function () {
 			?>
 			<div class="update-nag notice is-dismissible">
-				<p><?php _e( 'Meta Box plugin has been deactivated, As now it is embedded in Inspiry Real Estate plugin and no longer required separately. You should completely remove it from plugins.', 'inspiry' ); ?></p>
+				<p><strong><?php _e( 'Meta Box plugin has been deactivated!', 'inspiry-real-estate' ); ?></strong></p>
+				<p><?php _e( 'As now its functionality is embedded with in Inspiry Real Estate plugin.', 'inspiry-real-estate' ); ?></p>
+				<p><em><?php _e( 'So, You should completely remove it from your plugins.', 'inspiry-real-estate' ); ?></em></p>
 			</div>
 			<?php
 		} );
