@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Inspiry Real Estate\n"
-"POT-Creation-Date: 2015-11-26 19:11+0500\n"
-"PO-Revision-Date: 2015-11-26 19:13+0500\n"
+"POT-Creation-Date: 2015-11-26 21:28+0500\n"
+"PO-Revision-Date: 2015-11-26 21:28+0500\n"
 "Last-Translator: M Saqib Sarwar <saqib@inspirythemes.com>\n"
 "Language-Team: M Saqib Sarwar <saqib@inspirythemes.com>\n"
 "Language: en_US\n"
@@ -1025,4 +1025,17 @@ msgstr ""
 
 #: admin/class-inspiry-real-estate-admin.php:521
 msgid "Settings"
+msgstr ""
+
+#: inspiry-real-estate.php:76
+msgid "Meta Box plugin has been deactivated!"
+msgstr ""
+
+#: inspiry-real-estate.php:77
+msgid ""
+"As now its functionality is embedded with in Inspiry Real Estate plugin."
+msgstr ""
+
+#: inspiry-real-estate.php:78
+msgid "So, You should completely remove it from your plugins."
 msgstr ""
