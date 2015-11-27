@@ -492,7 +492,7 @@ class Inspiry_Property_Post_Type {
                     'name' => __('Property Address', 'inspiry-real-estate'),
                     'desc' => __('Leaving it empty will hide the google map on property detail page.', 'inspiry-real-estate'),
                     'type' => 'text',
-                    'std' => '1903 Hollywood Boulevard, Hollywood, FL 33020, USA',
+                    // 'std' => 'Miami, FL, USA',
                     'columns' => 12,
                     'tab' => 'details',
                 ),
@@ -501,7 +501,7 @@ class Inspiry_Property_Post_Type {
                     'name' => __('Property Location at Google Map*', 'inspiry-real-estate'),
                     'desc' => __('Drag the google map marker to point your property location. You can also use the address field above to search for your property.', 'inspiry-real-estate'),
                     'type' => 'map',
-                    'std' => '26.011812,-80.14524499999999,15',   // 'latitude,longitude[,zoom]' (zoom is optional)
+                    'std' => '25.761680,-80.191790,14',   // 'latitude,longitude[,zoom]' (zoom is optional)
                     'style' => 'width: 95%; height: 400px',
                     'address_field' => "{$prefix}property_address",
                     'columns' => 12,
