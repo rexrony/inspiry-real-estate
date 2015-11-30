@@ -1,3 +1,5 @@
+/* global jQuery, google */
+
 jQuery( function ( $ )
 {
 	'use strict';
@@ -17,7 +19,7 @@ jQuery( function ( $ )
 		if ( typeof google !== 'object' || typeof google.maps !== 'object' )
 			return;
 
-		$( '.rwmb-map-field' ).each( function()
+		$( '.rwmb-map-field' ).each( function ()
 		{
 			var controller = $( this ).data( 'mapController' );
 
@@ -43,4 +45,7 @@ jQuery( function ( $ )
 		refreshMap();
 	} );
 	$( '.rwmb-tab-active a' ).trigger( 'click' );
+
+	// Remove wrapper
+	$( '.rwmb-tabs-no-wrapper' ).closest( '.postbox' ).addClass( 'rwmb-tabs-no-controls' );
 } );

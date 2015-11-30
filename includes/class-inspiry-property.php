@@ -443,7 +443,7 @@ class Inspiry_Property {
      * Return slug or name of first term of given taxonomy
      * @param $taxonomy
      * @param string $field
-     * @return null|string
+     * @return null|string|mixed
      */
     public function get_taxonomy_first_term( $taxonomy, $field = 'slug' ) {
         if ( !$this->property_id || !$taxonomy || !taxonomy_exists( $taxonomy ) ) {

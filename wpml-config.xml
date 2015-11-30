@@ -61,6 +61,14 @@
             <key name="number_of_decimals" />
             <key name="empty_price_text" />
         </key>
+        <key name="inspiry_url_slugs_option">
+            <key name="property_url_slug" />
+            <key name="property_type_url_slug" />
+            <key name="property_status_url_slug" />
+            <key name="property_city_url_slug" />
+            <key name="property_feature_url_slug" />
+            <key name="agent_url_slug" />
+        </key>
     </admin-texts>
 
 </wpml-config>

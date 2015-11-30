@@ -3,7 +3,7 @@
 Plugin Name: Meta Box Show Hide
 Plugin URI: http://metabox.io/plugins/meta-box-show-hide-javascript/
 Description: Easily show/hide meta boxes by page template, taxonomy (including category, post format) using Javascript.
-Version: 0.2
+Version: 0.2.1
 Author: Rilwis
 Author URI: http://www.deluxeblogtips.com
 License: GPL2+
@@ -41,17 +41,26 @@ if ( ! class_exists( 'RWMB_Show_Hide' ) )
 		 */
 		static public function js_data( $obj )
 		{
+			global $post;
 			$meta_box = $obj->meta_box;
-			$show  = $hide = '';
+			$keys = array( 'show', 'hide' );
+			$data = '';
 
-			if ( ! empty( $meta_box['show'] ) )
-				$show = ' data-show="' . esc_attr( json_encode( $meta_box['show'] ) ) . '"';
+			$is_child = $post->post_parent ? true : false;
 
-			if ( ! empty( $meta_box['hide'] ) )
-				$hide = ' data-hide="' . esc_attr( json_encode( $meta_box['hide'] ) ) . '"';
+			foreach ( $keys as $e )
+			{
+				if ( ! empty( $meta_box[$e] ) )
+				{
+					if ( isset( $meta_box[$e]['is_child'] ) )
+						$meta_box[$e]['is_child'] = array( $meta_box[$e]['is_child'], $is_child );
 
-			if ( $show || $hide )
-				echo '<div class="rwmb-show-hide"' . $show . $hide . '></div>';
+					$data .= ' data-' . $e . '="' . esc_attr( json_encode( $meta_box[$e] ) ) . '"';
+				}
+			}
+
+			if ( '' != $data )
+				echo '<div class="rwmb-show-hide"' . $data . '></div>';
 		}
 
 		/**

@@ -9,7 +9,7 @@
  * Plugin Name:       Inspiry Real Estate
  * Plugin URI:        http://inspirythemes.com/
  * Description:       Inspiry real estate plugin provides property post type and agent post type with related functionality.
- * Version:           1.0.1
+ * Version:           1.1.0
  * Author:            M Saqib Sarwar
  * Author URI:        http://themeforest.net/user/InspiryThemes
  * Text Domain:       inspiry-real-estate
@@ -62,8 +62,46 @@ $inspiry_real_estate = Inspiry_Real_Estate::get_instance();
 $inspiry_real_estate->run();
 
 /*
- * Meta Box Extensions
+ * Meta Boxes Stuff
  */
-require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-columns/meta-box-columns.php' );         // columns
-require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-show-hide/meta-box-show-hide.php' );     // show hid
-require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-tabs/meta-box-tabs.php' );               // tabs
+
+// Deactivate Meta Box Plugin if Installed
+add_action( 'init', function() {
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	if ( is_plugin_active( 'meta-box/meta-box.php' ) ) {
+		deactivate_plugins( 'meta-box/meta-box.php' );
+		add_action( 'admin_notices', function () {
+			?>
+			<div class="update-nag notice is-dismissible">
+				<p><strong><?php _e( 'Meta Box plugin has been deactivated!', 'inspiry-real-estate' ); ?></strong></p>
+				<p><?php _e( 'As now its functionality is embedded with in Inspiry Real Estate plugin.', 'inspiry-real-estate' ); ?></p>
+				<p><em><?php _e( 'So, You should completely remove it from your plugins.', 'inspiry-real-estate' ); ?></em></p>
+			</div>
+			<?php
+		} );
+	}
+} );
+
+// Embedded meta box plugin
+if ( ! class_exists( 'RW_Meta_Box' ) ) {
+	define( 'RWMB_DIR', plugin_dir_path( __FILE__ ) . '/plugins/meta-box/' );
+	define( 'RWMB_URL', plugin_dir_url( __FILE__ ) . '/plugins/meta-box/' );
+	require_once ( RWMB_DIR . 'meta-box.php' );
+}
+
+// Meta Box Plugin Extensions
+
+// Columns extension
+if ( !class_exists( 'RWMB_Columns' ) ) {
+	require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-columns/meta-box-columns.php' );
+}
+
+// Show Hide extension
+if ( !class_exists( 'RWMB_Show_Hide' ) ) {
+	require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-show-hide/meta-box-show-hide.php' );
+}
+
+// Tabs extension
+if ( !class_exists( 'RWMB_Tabs' ) ) {
+	require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-tabs/meta-box-tabs.php' );               // tabs
+}

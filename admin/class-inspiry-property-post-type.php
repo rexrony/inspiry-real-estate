@@ -36,7 +36,7 @@ class Inspiry_Property_Post_Type {
         );
 
         $rewrite = array(
-            'slug'                => __( 'property', 'inspiry-real-estate' ),
+            'slug'                => apply_filters( 'inspiry_property_slug', __( 'property', 'inspiry-real-estate' ) ),
             'with_front'          => true,
             'pages'               => true,
             'feeds'               => true,
@@ -94,7 +94,7 @@ class Inspiry_Property_Post_Type {
         );
 
         $rewrite = array(
-            'slug'                       => __( 'property-type', 'inspiry-real-estate' ),
+            'slug'                       => apply_filters( 'inspiry_property_type_slug', __( 'property-type', 'inspiry-real-estate' ) ),
             'with_front'                 => true,
             'hierarchical'               => true,
         );
@@ -141,7 +141,7 @@ class Inspiry_Property_Post_Type {
         );
 
         $rewrite = array(
-            'slug'                       => __( 'property-status', 'inspiry-real-estate' ),
+            'slug'                       => apply_filters( 'inspiry_property_status_slug', __( 'property-status', 'inspiry-real-estate' ) ),
             'with_front'                 => true,
             'hierarchical'               => true,
         );
@@ -188,7 +188,7 @@ class Inspiry_Property_Post_Type {
         );
 
         $rewrite = array(
-            'slug'                       => __( 'property-city', 'inspiry-real-estate' ),
+            'slug'                       => apply_filters( 'inspiry_property_city_slug', __( 'property-city', 'inspiry-real-estate' ) ),
             'with_front'                 => true,
             'hierarchical'               => true,
         );
@@ -235,7 +235,7 @@ class Inspiry_Property_Post_Type {
         );
 
         $rewrite = array(
-            'slug'                       => __( 'property-feature', 'inspiry-real-estate' ),
+            'slug'                       => apply_filters( 'inspiry_property_feature_slug', __( 'property-feature', 'inspiry-real-estate' ) ),
             'with_front'                 => true,
             'hierarchical'               => true,
         );
@@ -492,7 +492,7 @@ class Inspiry_Property_Post_Type {
                     'name' => __('Property Address', 'inspiry-real-estate'),
                     'desc' => __('Leaving it empty will hide the google map on property detail page.', 'inspiry-real-estate'),
                     'type' => 'text',
-                    'std' => '1903 Hollywood Boulevard, Hollywood, FL 33020, USA',
+                    // 'std' => 'Miami, FL, USA',
                     'columns' => 12,
                     'tab' => 'details',
                 ),
@@ -501,7 +501,7 @@ class Inspiry_Property_Post_Type {
                     'name' => __('Property Location at Google Map*', 'inspiry-real-estate'),
                     'desc' => __('Drag the google map marker to point your property location. You can also use the address field above to search for your property.', 'inspiry-real-estate'),
                     'type' => 'map',
-                    'std' => '26.011812,-80.14524499999999,15',   // 'latitude,longitude[,zoom]' (zoom is optional)
+                    'std' => '25.761680,-80.191790,14',   // 'latitude,longitude[,zoom]' (zoom is optional)
                     'style' => 'width: 95%; height: 400px',
                     'address_field' => "{$prefix}property_address",
                     'columns' => 12,

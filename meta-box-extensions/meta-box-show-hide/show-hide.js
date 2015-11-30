@@ -80,6 +80,10 @@ jQuery( function ( $ )
 				}
 			}
 			return relation != 'OR';
+		},
+		is_child : function( isChild, relation )
+		{
+			return isChild[0] === isChild[1];
 		}
 	};
 
@@ -119,6 +123,10 @@ jQuery( function ( $ )
 		input_value	: function( callback, selector )
 		{
 			$( selector ).on( 'change', callback );
+		},
+		is_child	: function( callback )
+		{
+
 		}
 	};
 
@@ -162,7 +170,7 @@ jQuery( function ( $ )
 		if ( localConditions.hasOwnProperty( 'relation' ) )
 			delete localConditions['relation'];
 
-		var checkBy = ['template', 'post_format', 'input_value'],
+		var checkBy = ['template', 'post_format', 'input_value', 'is_child'],
 			by, condition;
 
 		for ( var i = 0, l = checkBy.length; i < l; i++ )
@@ -237,7 +245,7 @@ jQuery( function ( $ )
 		if ( localConditions.hasOwnProperty( 'relation' ) )
 			delete localConditions['relation'];
 
-		var checkBy = ['template', 'post_format', 'input_value'], by;
+		var checkBy = ['template', 'post_format', 'input_value', 'is_child'], by;
 		for ( var i = 0, l = checkBy.length; i < l; i++ )
 		{
 			by = checkBy[i];

@@ -1,19 +1,25 @@
 <?php
-/*
-Plugin Name: Meta Box Tabs
-Plugin URI: http://metabox.io/plugins/meta-box-tabs/
-Description: Create tabs for meta boxes easily. Support 3 WordPress-native tab styles.
-Version: 0.1.3
-Author: Rilwis
-Author URI: http://metabox.io
-License: GPL2+
-*/
+/**
+ * Plugin Name: Meta Box Tabs
+ * Plugin URI: https://metabox.io/plugins/meta-box-tabs/
+ * Description: Create tabs for meta boxes easily. Support 3 WordPress-native tab styles.
+ * Version: 0.1.5
+ * Author: Rilwis
+ * Author URI: https://metabox.io
+ * License: GPL2+
+ */
 
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'RWMB_Tabs' ) )
 {
+	/**
+	 * Main plugin class
+	 * @package    Meta Box
+	 * @subpackage Meta Box Tabs
+	 * @author     Tran Ngoc Tuan Anh <rilwis@gmail.com>
+	 */
 	class RWMB_Tabs
 	{
 		/**
@@ -82,6 +88,9 @@ if ( ! class_exists( 'RWMB_Tabs' ) )
 			$class = 'rwmb-tabs';
 			if ( isset( $obj->meta_box['tab_style'] ) && 'default' != $obj->meta_box['tab_style'] )
 				$class .= ' rwmb-tabs-' . $obj->meta_box['tab_style'];
+
+			if ( isset( $obj->meta_box['tab_wrapper'] ) && false == $obj->meta_box['tab_wrapper'] )
+				$class .= ' rwmb-tabs-no-wrapper';
 
 			echo '<div class="' . $class . '">';
 
