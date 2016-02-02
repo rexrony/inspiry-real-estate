@@ -55,11 +55,14 @@
 .rwmb-tabs-box .rwmb-tab-nav a {
   color: #777;
 }
-.rwmb-tabs-box .rwmb-tab-active,
-.rwmb-tabs-box .rwmb-tab-active:hover {
+.rwmb-tabs-box .rwmb-tab-nav .rwmb-tab-active {
+  border-bottom-color: transparent;
+}
+.rwmb-tabs-box .rwmb-tab-nav .rwmb-tab-active,
+.rwmb-tabs-box .rwmb-tab-nav .rwmb-tab-active:hover {
   background: #f5f5f5;
 }
-.rwmb-tabs-box .rwmb-tab-active a {
+.rwmb-tabs-box .rwmb-tab-nav .rwmb-tab-active a {
   color: #555;
 }
 .rwmb-tabs-box .rwmb-tab-panel {

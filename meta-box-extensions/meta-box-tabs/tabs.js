@@ -44,6 +44,21 @@ jQuery( function ( $ )
 
 		refreshMap();
 	} );
+
+	// Set active tab based on visible pane to better works with Meta Box Conditional Logic
+	if ( ! $( '.rwmb-tab-active').is( 'visible' ) )
+	{
+		// Find the active pane
+		var activePane = $( '.rwmb-tab-panel[style*="block"]' ).index();
+
+		if (activePane >= 0 )
+		{
+			$( '.rwmb-tab-nav li' ).removeClass( 'rwmb-tab-active' );
+
+			$( '.rwmb-tab-nav li' ).eq( activePane ).addClass( 'rwmb-tab-active' );
+		}
+	}
+
 	$( '.rwmb-tab-active a' ).trigger( 'click' );
 
 	// Remove wrapper
