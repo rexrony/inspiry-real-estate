@@ -1,42 +1,33 @@
 <?php
-/*
-Plugin Name: Meta Box Columns
-Plugin URI: http://www.deluxeblogtips.com/meta-box
-Description: Display fields more beautiful by putting them into 12-columns grid.
-Version: 0.1
-Author: Rilwis
-Author URI: http://www.deluxeblogtips.com
-License: GPL2+
-*/
+/**
+ * Plugin Name: Meta Box Columns
+ * Plugin URI: https://metabox.io/plugins/meta-box-columns/
+ * Description: Display fields more beautiful by putting them into 12-columns grid.
+ * Version: 0.1.1
+ * Author: Rilwis
+ * Author URI: http://www.deluxeblogtips.com
+ * License: GPL2+
+ */
 
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-class RWMB_Columns
+class MB_Columns
 {
 	/**
 	 * Add hooks to meta box
-	 *
-	 * @return RWMB_Columns
 	 */
-	function __construct()
+	public function __construct()
 	{
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+		add_action( 'rwmb_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_filter( 'rwmb_normalize_field', array( $this, 'normalize_field' ) );
 	}
 
 	/**
-	 * Enqueue scripts and styles for tabs
-	 *
-	 * @return void
+	 * Enqueue scripts and styles for columns
 	 */
-	function admin_enqueue_scripts()
+	public function admin_enqueue_scripts()
 	{
-		// Enqueue scripts and styles for post edit screen only
-		$screen = get_current_screen();
-		if ( 'post' != $screen->base )
-			return;
-
 		wp_enqueue_style( 'rwmb-columns', plugins_url( 'columns.css', __FILE__ ) );
 	}
 
@@ -44,19 +35,22 @@ class RWMB_Columns
 	 * Add column class to field and output opening/closing div for row
 	 *
 	 * @param array $field
-	 *
 	 * @return array
 	 */
-	function normalize_field( $field )
+	public function normalize_field( $field )
 	{
 		static $total_columns = 0;
 
 		if ( empty( $field['columns'] ) )
+		{
 			return $field;
+		}
 
 		// Column class
 		if ( empty( $field['class'] ) )
+		{
 			$field['class'] = '';
+		}
 		$field['class'] .= ' rwmb-column rwmb-column-' . $field['columns'];
 
 		// First column: add .first class and opening div
@@ -77,9 +71,11 @@ class RWMB_Columns
 		}
 
 		$field['class'] = trim( $field['class'] );
-
 		return $field;
 	}
 }
 
-new RWMB_Columns;
+if ( is_admin() )
+{
+	new MB_Columns;
+}

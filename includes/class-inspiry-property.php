@@ -414,6 +414,14 @@ class Inspiry_Property {
     }
 
     /**
+     * Return property city
+     * @return bool|null|string
+     */
+    public function get_city() {
+        return $this->get_taxonomy_terms( 'property-city' );
+    }
+
+    /**
      * Return taxonomy terms
      * @param $taxonomy
      * @return bool|null|string

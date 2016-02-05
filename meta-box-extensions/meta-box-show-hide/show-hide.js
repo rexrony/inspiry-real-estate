@@ -4,34 +4,30 @@ jQuery( function ( $ )
 
 	// Global variables
 	var $pageTemplate = $( '#page_template ' ),
-		$postFormat = $( 'input[name="post_format"]' );
+		$postFormat = $( 'input[name="post_format"]' ),
+		$parent = $( '#parent_id' );
 
 	// Callback functions to check for each condition
 	var checkCallbacks = {
-		/**
-		 * Check by page templates
-		 *
-		 * @param templates Array of page templates
-		 *
-		 * @return bool
-		 */
 		template   : function ( templates )
 		{
-			return -1 != $.inArray( $pageTemplate.val(), templates );
+			return -1 != templates.indexOf( $pageTemplate.val() );
 		},
 		post_format: function ( formats )
 		{
 			// Make sure registered formats in lowercase
-			formats = $.map( formats, function ( format )
+			formats = formats.map( function ( format )
 			{
 				return format.toLowerCase();
 			} );
 
 			var value = $postFormat.filter( ':checked' ).val();
 			if ( !value || 0 == value )
+			{
 				value = 'standard';
+			}
 
-			return -1 != $.inArray( value, formats );
+			return -1 != formats.indexOf( value );
 		},
 		taxonomy   : function ( taxonomy, terms )
 		{
@@ -48,12 +44,12 @@ jQuery( function ( $ )
 
 			for ( var i = 0, len = values.length; i < len; i++ )
 			{
-				if ( -1 != $.inArray( values[i], terms ) )
+				if ( -1 != terms.indexOf( values[i] ) )
 					return true;
 			}
 			return false;
 		},
-		input_value	: function( inputValues, relation )
+		input_value: function ( inputValues, relation )
 		{
 			relation = relation || 'OR';
 
@@ -81,9 +77,9 @@ jQuery( function ( $ )
 			}
 			return relation != 'OR';
 		},
-		is_child : function( isChild, relation )
+		is_child   : function ()
 		{
-			return isChild[0] === isChild[1];
+			return '' != $parent.val();
 		}
 	};
 
@@ -120,13 +116,13 @@ jQuery( function ( $ )
 
 			$( '#' + taxonomy + 'checklist' ).on( 'change', 'input', callback );
 		},
-		input_value	: function( callback, selector )
+		input_value: function ( callback, selector )
 		{
 			$( selector ).on( 'change', callback );
 		},
-		is_child	: function( callback )
+		is_child   : function ( callback )
 		{
-
+			$parent.on( 'change', callback );
 		}
 	};
 
@@ -161,7 +157,7 @@ jQuery( function ( $ )
 	function checkAllConditions( conditions )
 	{
 		// Don't change "global" conditions
-		var localConditions = $.extend( { }, conditions );
+		var localConditions = $.extend( {}, conditions );
 
 		var relation = localConditions.hasOwnProperty( 'relation' ) ? localConditions['relation'].toUpperCase() : 'OR',
 			value;
@@ -239,7 +235,7 @@ jQuery( function ( $ )
 	function addEventListeners( type, conditions, $metaBox )
 	{
 		// Don't change "global" conditions
-		var localConditions = $.extend( { }, conditions );
+		var localConditions = $.extend( {}, conditions );
 
 		// For better loop of checking terms
 		if ( localConditions.hasOwnProperty( 'relation' ) )
@@ -284,7 +280,7 @@ jQuery( function ( $ )
 	}
 
 	// Show/hide check for each meta box
-	$( '.rwmb-show-hide' ).each( function ()
+	$( '.mb-show-hide' ).each( function ()
 	{
 		var $this = $( this ),
 			$metaBox = $this.closest( '.postbox' ),
