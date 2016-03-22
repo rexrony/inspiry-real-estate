@@ -586,7 +586,7 @@ class Inspiry_Property_Post_Type {
                         array(
                             'name' => __( 'Floor Plan Image', 'inspiry-real-estate' ),
                             'id'   => "inspiry_floor_plan_image",
-                            'desc' => __( 'The recommended minimum width is 770px and height is flexible.', 'inspiry-real-estate' ),
+                            'desc' => __( 'The recommended minimum width is 700px and height is flexible.', 'inspiry-real-estate' ),
                             'type' => 'file_input',
                             'max_file_uploads' => 1,
                         ),
