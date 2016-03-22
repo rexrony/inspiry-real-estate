@@ -381,6 +381,10 @@ class Inspiry_Property_Post_Type {
                     'label' => __('Gallery Images', 'inspiry-real-estate'),
                     'icon' => 'dashicons-format-gallery',
                 ),
+	            'floor-plans' => array(
+		            'label' => __('Floor Plans', 'inspiry-real-estate'),
+		            'icon' => 'dashicons-layout',
+	            ),
                 'video' => array(
                     'label' => __('Property Video', 'inspiry-real-estate'),
                     'icon' => 'dashicons-format-video',
@@ -518,6 +522,76 @@ class Inspiry_Property_Post_Type {
                     'tab' => 'gallery',
                 ),
 
+                // Floor Plans
+                array(
+                    'id'    => "inspiry_floor_plans",
+                    'type'  => 'group',
+                    'columns' => 12,
+                    'clone' => true,
+                    'tab'   => 'floor-plans',
+                    'fields' => array(
+                        array(
+                            'name' => __( 'Floor Name', 'inspiry-real-estate' ),
+                            'id'   => "inspiry_floor_plan_name",
+                            'desc' => __( 'Example: Ground Floor', 'inspiry-real-estate' ),
+                            'type' => 'text',
+                        ),
+                        array(
+                            'name' => __( 'Floor Price ( Only digits )', 'inspiry-real-estate' ),
+                            'id'   => "inspiry_floor_plan_price",
+                            'desc' => __( 'Example: 4000', 'inspiry-real-estate' ),
+                            'type' => 'text',
+                            'columns' => 6,
+                        ),
+                        array(
+                            'name' => __( 'Price Postfix', 'inspiry-real-estate' ),
+                            'id'   => "inspiry_floor_plan_price_postfix",
+                            'desc' => __( 'Example: Per Month', 'inspiry-real-estate' ),
+                            'type' => 'text',
+                            'columns' => 6,
+                        ),
+                        array(
+                            'name' => __( 'Floor Size ( Only digits )', 'inspiry-real-estate' ),
+                            'id'   => "inspiry_floor_plan_size",
+                            'desc' => __( 'Example: 2500', 'inspiry-real-estate' ),
+                            'type' => 'text',
+                            'columns' => 6,
+                        ),
+                        array(
+                            'name' => __( 'Size Postfix', 'inspiry-real-estate' ),
+                            'id'   => "inspiry_floor_plan_size_postfix",
+                            'desc' => __( 'Example: Sq Ft', 'inspiry-real-estate' ),
+                            'type' => 'text',
+                            'columns' => 6,
+                        ),
+                        array(
+                            'name' => __( 'Bedrooms', 'inspiry-real-estate' ),
+                            'id'   => "inspiry_floor_plan_bedrooms",
+                            'desc' => __( 'Example: 4', 'inspiry-real-estate' ),
+                            'type' => 'text',
+                            'columns' => 6,
+                        ),
+                        array(
+                            'name' => __( 'Bathrooms', 'inspiry-real-estate' ),
+                            'id'   => "inspiry_floor_plan_bathrooms",
+                            'desc' => __( 'Example: 2', 'inspiry-real-estate' ),
+                            'type' => 'text',
+                            'columns' => 6,
+                        ),
+                        array(
+                            'name' => __( 'Description', 'inspiry-real-estate' ),
+                            'id'   => "inspiry_floor_plan_descr",
+                            'type' => 'textarea',
+                        ),
+                        array(
+                            'name' => __( 'Floor Plan Image', 'inspiry-real-estate' ),
+                            'id'   => "inspiry_floor_plan_image",
+                            'desc' => __( 'The recommended minimum width is 770px and height is flexible.', 'inspiry-real-estate' ),
+                            'type' => 'file_input',
+                            'max_file_uploads' => 1,
+                        ),
+                    ),
+                ),
 
                 // Property Video
                 array(
