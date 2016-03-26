@@ -275,14 +275,19 @@ class Inspiry_Property_Post_Type {
 
         if ( count( $defaults ) > 5 ) {
 
+	        /* Remove Author */
             unset( $defaults['author'] );
 
-            $last_columns = array_splice( $defaults, 2, 4 );
+	        /* Remove Comments */
+            unset( $defaults['comments'] );
 
-            // Simplify column titles
-            $last_columns[ 'taxonomy-property-type' ]   = __( 'Type', 'inspiry-real-estate' );
-            $last_columns[ 'taxonomy-property-status' ] = __( 'Status', 'inspiry-real-estate' );
-            $last_columns[ 'taxonomy-property-city' ]   = __( 'Location', 'inspiry-real-estate' );
+	        /* get last 4 columns Type, Status, Location and Date */
+            $last_columns = array_splice( $defaults, -4, 4 );
+
+            /* Simplify column titles */
+	        $last_columns[ 'taxonomy-property-type' ]   = __( 'Type', 'inspiry-real-estate' );
+	        $last_columns[ 'taxonomy-property-status' ] = __( 'Status', 'inspiry-real-estate' );
+	        $last_columns[ 'taxonomy-property-city' ]   = __( 'Location', 'inspiry-real-estate' );
 
         }
 
@@ -631,6 +636,7 @@ class Inspiry_Property_Post_Type {
                     'id' => "{$prefix}agents",
                     'type' => 'select',
                     'options' => $agents_array,
+	                'multiple' => true,
                     'columns' => 12,
                     'tab' => 'agent',
                 ),
