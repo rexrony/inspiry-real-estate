@@ -254,6 +254,23 @@ class Inspiry_Property {
     }
 
     /**
+     * Get multiple agents ids
+     * @return bool|mixed
+     */
+    public function get_agents_ids() {
+
+        if ( ! $this->property_id ) {
+            return false;
+        }
+
+	    if ( isset( $this->meta_data[ $this->meta_keys['agent_id'] ] ) ) {
+		    return $this->meta_data[ $this->meta_keys['agent_id'] ];
+	    }
+
+	    return false;
+    }
+
+    /**
      * Get slider image URL
      * @return bool|string
      */
