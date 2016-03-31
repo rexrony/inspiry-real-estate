@@ -9,7 +9,7 @@
  * Plugin Name:       Inspiry Real Estate
  * Plugin URI:        http://inspirythemes.com/
  * Description:       Inspiry real estate plugin provides property post type and agent post type with related functionality.
- * Version:           1.1.1
+ * Version:           1.2.0
  * Author:            M Saqib Sarwar
  * Author URI:        http://themeforest.net/user/InspiryThemes
  * Text Domain:       inspiry-real-estate
@@ -65,9 +65,12 @@ $inspiry_real_estate->run();
  * Meta Boxes Stuff
  */
 
-// Deactivate Meta Box Plugin if Installed
+// Deactivate Meta Box Plugin and related extensions if Installed
 add_action( 'init', function() {
+
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+	// Meta Box Plugin
 	if ( is_plugin_active( 'meta-box/meta-box.php' ) ) {
 		deactivate_plugins( 'meta-box/meta-box.php' );
 		add_action( 'admin_notices', function () {
@@ -80,6 +83,71 @@ add_action( 'init', function() {
 			<?php
 		} );
 	}
+
+	// Meta Box Columns Extension
+	if ( is_plugin_active( 'meta-box-columns/meta-box-columns.php' ) ) {
+		deactivate_plugins( 'meta-box-columns/meta-box-columns.php' );
+		add_action( 'admin_notices', function () {
+			?>
+			<div class="update-nag notice is-dismissible">
+				<p>
+					<strong><?php _e( 'Meta Box Columns plugin has been deactivated!', 'inspiry-real-estate' ); ?></strong>
+					&nbsp;<?php _e( 'As now its functionality is embedded with in Inspiry Real Estate plugin.', 'inspiry-real-estate' ); ?>
+				</p>
+				<p><em><?php _e( 'So, You should completely remove it from your plugins.', 'inspiry-real-estate' ); ?></em></p>
+			</div>
+			<?php
+		} );
+	}
+
+	// Meta Box Tabs Extension
+	if ( is_plugin_active( 'meta-box-tabs/meta-box-tabs.php' ) ) {
+		deactivate_plugins( 'meta-box-tabs/meta-box-tabs.php' );
+		add_action( 'admin_notices', function () {
+			?>
+			<div class="update-nag notice is-dismissible">
+				<p>
+					<strong><?php _e( 'Meta Box Tabs plugin has been deactivated!', 'inspiry-real-estate' ); ?></strong>
+					&nbsp;<?php _e( 'As now its functionality is embedded with in Inspiry Real Estate plugin.', 'inspiry-real-estate' ); ?>
+				</p>
+				<p><em><?php _e( 'So, You should completely remove it from your plugins.', 'inspiry-real-estate' ); ?></em></p>
+			</div>
+			<?php
+		} );
+	}
+
+	// Meta Box Show Hide Extension
+	if ( is_plugin_active( 'meta-box-show-hide/meta-box-show-hide.php' ) ) {
+		deactivate_plugins( 'meta-box-show-hide/meta-box-show-hide.php' );
+		add_action( 'admin_notices', function () {
+			?>
+			<div class="update-nag notice is-dismissible">
+				<p>
+					<strong><?php _e( 'Meta Box Show Hide plugin has been deactivated!', 'inspiry-real-estate' ); ?></strong>
+					&nbsp;<?php _e( 'As now its functionality is embedded with in Inspiry Real Estate plugin.', 'inspiry-real-estate' ); ?>
+				</p>
+				<p><em><?php _e( 'So, You should completely remove it from your plugins.', 'inspiry-real-estate' ); ?></em></p>
+			</div>
+			<?php
+		} );
+	}
+
+	// Meta Box Group Extension
+	if ( is_plugin_active( 'meta-box-group/meta-box-group.php' ) ) {
+		deactivate_plugins( 'meta-box-group/meta-box-group.php' );
+		add_action( 'admin_notices', function () {
+			?>
+			<div class="update-nag notice is-dismissible">
+				<p>
+					<strong><?php _e( 'Meta Box Group plugin has been deactivated!', 'inspiry-real-estate' ); ?></strong>
+					&nbsp;<?php _e( 'As now its functionality is embedded with in Inspiry Real Estate plugin.', 'inspiry-real-estate' ); ?>
+				</p>
+				<p><em><?php _e( 'So, You should completely remove it from your plugins.', 'inspiry-real-estate' ); ?></em></p>
+			</div>
+			<?php
+		} );
+	}
+
 } );
 
 // Embedded meta box plugin
@@ -104,4 +172,9 @@ if ( !class_exists( 'RWMB_Show_Hide' ) ) {
 // Tabs extension
 if ( !class_exists( 'RWMB_Tabs' ) ) {
 	require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-tabs/meta-box-tabs.php' );               // tabs
+}
+
+// Group extension
+if ( !class_exists( 'RWMB_Group' ) ) {
+	require_once ( plugin_dir_path( __FILE__ ) . 'meta-box-extensions/meta-box-group/meta-box-group.php' );               // tabs
 }

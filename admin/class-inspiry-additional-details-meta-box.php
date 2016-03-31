@@ -94,10 +94,10 @@ class Additional_Details_Meta_Box {
 								<span class="sort-detail dashicons dashicons-menu"></span>
 							</div>
 							<div class="inspiry-detail-title">
-								<input type="text" name="detail-titles[]" value="<?php echo $title; ?>" />
+								<input type="text" name="detail-titles[]" value="<?php echo esc_attr( $title ); ?>" />
 							</div>
 							<div class="inspiry-detail-value">
-								<input type="text" name="detail-values[]" value="<?php echo $value; ?>" />
+								<input type="text" name="detail-values[]" value="<?php echo esc_attr( $value ); ?>" />
 							</div>
 							<div class="inspiry-detail-control">
 								<a class="remove-detail" href="#"><span class="dashicons dashicons-dismiss"></span></a>
