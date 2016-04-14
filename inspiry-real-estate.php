@@ -151,10 +151,8 @@ add_action( 'init', function() {
 } );
 
 // Embedded meta box plugin
-if ( ! class_exists( 'RW_Meta_Box' ) ) {
-	define( 'RWMB_DIR', plugin_dir_path( __FILE__ ) . '/plugins/meta-box/' );
-	define( 'RWMB_URL', plugin_dir_url( __FILE__ ) . '/plugins/meta-box/' );
-	require_once ( RWMB_DIR . 'meta-box.php' );
+if ( ! class_exists( 'RWMB_Core' ) ) {
+	require_once ( plugin_dir_path( __FILE__ ) . '/plugins/meta-box/meta-box.php' );
 }
 
 // Meta Box Plugin Extensions
