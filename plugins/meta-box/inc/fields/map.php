@@ -15,7 +15,7 @@ class RWMB_Map_Field extends RWMB_Field
 		 * Allows developers load more libraries via a filter.
 		 * @link https://developers.google.com/maps/documentation/javascript/libraries
 		 */
-		$google_maps_url = apply_filters( 'rwmb_google_maps_url', 'https://maps.google.com/maps/api/js?sensor=false' );
+		$google_maps_url = apply_filters( 'rwmb_google_maps_url', '//maps.google.com/maps/api/js' );
 		wp_register_script( 'google-maps', esc_url_raw( $google_maps_url ), array(), '', true );
 		wp_enqueue_style( 'rwmb-map', RWMB_CSS_URL . 'map.css' );
 		wp_enqueue_script( 'rwmb-map', RWMB_JS_URL . 'map.js', array( 'jquery-ui-autocomplete', 'google-maps' ), RWMB_VER, true );
@@ -121,7 +121,7 @@ class RWMB_Map_Field extends RWMB_Field
 		 * Allows developers load more libraries via a filter.
 		 * @link https://developers.google.com/maps/documentation/javascript/libraries
 		 */
-		$google_maps_url = apply_filters( 'rwmb_google_maps_url', 'https://maps.google.com/maps/api/js?sensor=false' );
+		$google_maps_url = apply_filters( 'rwmb_google_maps_url', '//maps.google.com/maps/api/js' );
 		wp_register_script( 'google-maps', esc_url_raw( $google_maps_url ), array(), '', true );
 		wp_enqueue_script( 'rwmb-map-frontend', RWMB_JS_URL . 'map-frontend.js', array( 'google-maps' ), '', true );
 
