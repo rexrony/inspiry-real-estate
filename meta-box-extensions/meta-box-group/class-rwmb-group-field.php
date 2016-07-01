@@ -19,12 +19,47 @@ class RWMB_Group_Field extends RWMB_Field
 	protected static $meta_queue = array();
 
 	/**
+	 * Add hooks for sub-fields.
+	 */
+	public static function add_actions()
+	{
+		// Group field is the 1st param
+		$args = func_get_args();
+		foreach ( $args[0]['fields'] as $field )
+		{
+			RWMB_Field::call( $field, 'add_actions' );
+		}
+	}
+
+	/**
 	 * Enqueue scripts and styles.
 	 */
 	public static function admin_enqueue_scripts()
 	{
-		wp_enqueue_style( 'rwmb-group', plugins_url( 'group.css', __FILE__ ) );
-		wp_enqueue_script( 'rwmb-group', plugins_url( 'group.js', __FILE__ ) );
+		// Group field is the 1st param
+		$args   = func_get_args();
+		$fields = $args[0]['fields'];
+
+		// Load clone script conditionally
+		foreach ( $fields as $field )
+		{
+			if ( $field['clone'] )
+			{
+				wp_enqueue_script( 'rwmb-clone', RWMB_JS_URL . 'clone.js', array( 'jquery-ui-sortable' ), RWMB_VER, true );
+				break;
+			}
+		}
+
+		// Enqueue sub-fields scripts and styles.
+		foreach ( $fields as $field )
+		{
+			RWMB_Field::call( $field, 'admin_enqueue_scripts' );
+		}
+
+		// Use helper function to get correct URL to current folder, which can be used in themes/plugins.
+		list( , $url ) = RWMB_Loader::get_path( dirname( __FILE__ ) );
+		wp_enqueue_style( 'rwmb-group', $url . 'group.css', '', '1.1.2' );
+		wp_enqueue_script( 'rwmb-group', $url . 'group.js', array( 'jquery' ), '1.1.2', true );
 	}
 
 	/**
@@ -56,9 +91,9 @@ class RWMB_Group_Field extends RWMB_Field
 
 		foreach ( $field['fields'] as $child_field )
 		{
-			$child_field['attributes']['name'] = $child_field['field_name'] = self::child_field_name( $field['field_name'], $child_field['field_name'] );
-			$child_field['attributes']['id']   = ( isset( $child_field['attributes']['id'] ) ? $child_field['attributes']['id'] : $child_field['id'] ) . $clone_index;
-			call_user_func( array( RW_Meta_Box::get_class_name( $child_field ), 'show' ), $child_field, RWMB_Group::$saved );
+			$child_field['field_name']       = self::child_field_name( $field['field_name'], $child_field['field_name'] );
+			$child_field['attributes']['id'] = ( isset( $child_field['attributes']['id'] ) ? $child_field['attributes']['id'] : $child_field['id'] ) . $clone_index;
+			self::call( 'show', $child_field, RWMB_Group::$saved );
 		}
 
 		// Remove group value from the queue
@@ -87,17 +122,30 @@ class RWMB_Group_Field extends RWMB_Field
 		$child_id   = $child_field['id'];
 		if ( isset( $group_meta[$child_id] ) )
 		{
-			return $group_meta[$child_id];
+			$meta = $group_meta[$child_id];
 		}
 		if ( ! $saved && isset( $child_field['std'] ) )
 		{
-			return $child_field['std'];
+			$meta = $child_field['std'];
 		}
-		if ( $child_field['multiple'] )
+
+		/**
+		 * Make sure meta value is an array for clonable and multiple fields
+		 * @see RWMB_Field::meta()
+		 */
+		if ( $child_field['clone'] || $child_field['multiple'] )
 		{
-			return array();
+			if ( empty( $meta ) || ! is_array( $meta ) )
+			{
+				/**
+				 * Note: if field is clonable, $meta must be an array with values
+				 * so that the foreach loop in self::show() runs properly
+				 * @see RWMB_Field::show()
+				 */
+				$meta = $child_field['clone'] ? array( '' ) : array();
+			}
 		}
-		return '';
+		return $meta;
 	}
 
 	/**
@@ -154,14 +202,48 @@ class RWMB_Group_Field extends RWMB_Field
 	}
 
 	/**
-	 * Add clone button.
+	 * Set value of meta before saving into database
 	 *
-	 * @param array $field Field parameter
-	 * @return string $html
+	 * @param mixed $new
+	 * @param mixed $old
+	 * @param int   $post_id
+	 * @param array $field
+	 *
+	 * @return int
 	 */
-	public static function add_clone_button( $field )
+	public static function value( $new, $old, $post_id, $field )
 	{
-		$text = apply_filters( 'rwmb_group_add_clone_button_text', __( '+ Add more', 'meta-box-group' ), $field );
-		return "<a href='#' class='rwmb-button button-primary add-clone'>$text</a>";
+		$sanitized = array();
+		foreach ( $new as $key => $value )
+		{
+			if ( is_array( $value ) && ! empty( $value ) )
+			{
+				$value = self::value( $value, '', '', '' );
+			}
+			if ( '' !== $value && array() !== $value )
+			{
+				if ( is_int( $key ) )
+				{
+					$sanitized[] = $value;
+				}
+				else
+				{
+					$sanitized[$key] = $value;
+				}
+			}
+		}
+		return $sanitized;
+	}
+
+	/**
+	 * Normalize group fields.
+	 * @param array $field
+	 * @return array
+	 */
+	public static function normalize( $field )
+	{
+		$field           = parent::normalize( $field );
+		$field['fields'] = RW_Meta_Box::normalize_fields( $field['fields'] );
+		return $field;
 	}
 }
