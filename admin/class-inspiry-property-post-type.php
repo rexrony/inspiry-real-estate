@@ -637,6 +637,7 @@ class Inspiry_Property_Post_Type {
                     'type' => 'select',
                     'options' => $agents_array,
 	                'multiple' => true,
+                    'select_all_none' => true,
                     'columns' => 12,
                     'tab' => 'agent',
                 ),
